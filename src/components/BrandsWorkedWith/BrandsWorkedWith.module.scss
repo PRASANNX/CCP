@@ -173,13 +173,15 @@
   min-height: 92px;
   display: grid;
   place-items: center;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
 }
 
 .logo {
-  max-width: min(180px, 70%);
+  max-width: min(180px, 80%);
   max-height: 70px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
   opacity: 0.92;
   transition:
     opacity 0.35s var(--ease),
