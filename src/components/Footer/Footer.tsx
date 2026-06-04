@@ -6,7 +6,7 @@ export const Footer = () => {
   const footerRef = useReveal<HTMLDivElement>();
 
   return (
-    <footer className={styles.footer} ref={footerRef}>
+    <footer id="contact" className={styles.footer} ref={footerRef}>
       <div className="container">
         <div className={styles.top} data-reveal>
           <img src={logo} alt="CCProductions" style={{ height: 'clamp(72px, 12vw, 150px)', width: 'auto', filter: 'invert(1) brightness(1.5)' }} />

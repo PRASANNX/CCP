@@ -6,22 +6,15 @@ export interface NavItem {
 }
 
 export const navigation: NavItem[] = [
-  {
-    label: 'Segments',
-    href: '#',
-    rel: 'nav-1',
-    children: [
-      { label: 'Education & Institutions', href: '#' },
-      { label: 'Corporate Brands', href: '#' },
-    ],
-  },
-  {
-    label: 'Offerings',
-    href: '#',
-    rel: 'nav-2',
-    children: [
-      { label: 'Content-Led Marketing', href: '#' },
-      { label: 'Event Coverage & Films', href: '#' },
-    ],
-  },
+  { label: 'Home', href: '#top', rel: 'top' },
+  { label: 'Showreel', href: '#showreel-title', rel: 'showreel' },
+  { label: 'Founder', href: '#founder-chacha-title', rel: 'founder' },
+  { label: 'Methodology', href: '#methodology-title', rel: 'methodology' },
+  { label: 'Logos', href: '#logo-carousel-title', rel: 'logos' },
+  { label: 'Brands', href: '#brands-worked-with-title', rel: 'brands' },
+  { label: 'What makes CCP different', href: '#feature-title', rel: 'features' },
+  { label: 'Proof', href: '#kpi-proof-title', rel: 'proof' },
+  { label: 'Cases', href: '#cases-title', rel: 'cases' },
+  { label: 'Composition', href: '#composition-title', rel: 'composition' },
+  { label: 'Contact', href: '#contact', rel: 'contact' },
 ];
