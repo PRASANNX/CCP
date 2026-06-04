@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  top: clamp(14px, 1.6vw, 24px);
+  top: clamp(12px, 1.6vw, 20px);
   left: 50%;
   transform: translateX(-50%);
   width: min(92vw, 1320px);
@@ -8,7 +8,7 @@
   background: var(--white);
   color: var(--black);
   border-radius: 18px;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 .inner {
@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: clamp(84px, 6vw, 110px);
+  height: var(--header-height);
   padding: 0 clamp(18px, 2vw, 34px);
 }
 
@@ -27,6 +27,12 @@
   letter-spacing: -0.02em;
   color: var(--black);
   margin-left: 1rem;
+
+  img {
+    height: 56px;
+    width: auto;
+    display: block;
+  }
 }
 
 .nav {
@@ -101,13 +107,13 @@
   inset: 0;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
-  z-index: 90;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  ul {
+    display: flex;
+    gap: clamp(28px, 4vw, 64px);
+    align-items: center;
+  }
 }
-
+    padding: 0.58rem 1.9rem;
 .maskActive {
   opacity: 1;
   visibility: visible;
