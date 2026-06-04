@@ -16,18 +16,18 @@ export const Footer = () => {
         
         <div className={styles.middle} data-reveal>
           <div className={styles.newsletter}>
-            <h3 className="display-xs">[FILL: Newsletter Title]</h3>
-            <p className="text-m">[FILL: Newsletter text]</p>
-            <div className={styles.formPlaceholder}>[FILL: Newsletter Form]</div>
+            <h3 className="display-xs">Start the conversation</h3>
+            <p className="text-m">Share your brand, campus, event, or campaign goals and we’ll map the right content structure.</p>
+            <div className={styles.formPlaceholder}>Enter email / request proposal</div>
           </div>
           
           <div className={styles.linksGroup}>
-            <h3 className="text-s">[FILL: Links Header]</h3>
+            <h3 className="text-s">Quick Links</h3>
             <div className={styles.links}>
-              <a href="#">[FILL: Link 1]</a>
-              <a href="#">[FILL: Link 2]</a>
-              <a href="#">[FILL: Link 3]</a>
-              <a href="#">[FILL: Link 4]</a>
+              <a href="#">Segments</a>
+              <a href="#">Offerings</a>
+              <a href="#">Work</a>
+              <a href="#">Contact</a>
             </div>
           </div>
         </div>
@@ -36,13 +36,13 @@ export const Footer = () => {
 
         <div className={styles.bottom} data-reveal>
           <div className={styles.social}>
-            <a href="#" aria-label="Social link 1">[FILL: Social 1]</a>
-            <a href="#" aria-label="Social link 2">[FILL: Social 2]</a>
-            <a href="#" aria-label="Social link 3">[FILL: Social 3]</a>
+            <a href="#" aria-label="Social link 1">Instagram</a>
+            <a href="#" aria-label="Social link 2">LinkedIn</a>
+            <a href="#" aria-label="Social link 3">YouTube</a>
           </div>
           <div className={styles.legal}>
-            <a href="#">[FILL: Legal 1]</a>
-            <a href="#">[FILL: Legal 2]</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
           </div>
         </div>
       </div>

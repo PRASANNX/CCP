@@ -38,11 +38,11 @@ export function FeatureCards() {
     >
       <div className={styles.headingWrap} data-reveal>
         <h2 id="feature-cards-title" className={`${styles.heading} display-s`}>
-          <span>[FILL: difference title line 1]</span>
-          <span>[FILL: difference title line 2]</span>
+          <span>What makes</span>
+          <span>CCP</span>
           <span className={styles.headingLineWithShape}>
             <span className={styles.shape} aria-hidden="true" />
-            [FILL: difference title line 3]
+            different
           </span>
         </h2>
       </div>
@@ -50,7 +50,7 @@ export function FeatureCards() {
       <div
         className={styles.cards}
         role="list"
-        aria-label="[FILL: feature cards aria label]"
+        aria-label="What makes CCP different"
       >
         {featureCards.map((card, index) => {
           const isActive = activeIndex === index;

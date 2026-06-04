@@ -26,12 +26,12 @@ export const GlassCards = () => {
       <div className="container">
         <div className={styles.heading} data-reveal>
           <h2 className="display-l" style={{textTransform: 'none'}}>
-            <span>[FILL: audience path title line 1]</span>
+            <span>Built for</span>
             <span>
               <span className={styles.shape} aria-hidden="true" />
-              [FILL: audience path title line 2]
+              brands that
             </span>
-            <span>[FILL: audience path title line 3]</span>
+            <span>need more than content</span>
           </h2>
         </div>
         

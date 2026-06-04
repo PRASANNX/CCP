@@ -10,20 +10,20 @@ import { useMediaQuery } from "../../hooks/useMediaQuery";
 const steps = [
   {
     number: "01.",
-    title: "[FILL: step 1 title]",
-    detail: "[FILL: step 1 detail]",
+    title: "Discover the story",
+    detail: "We understand the brand, audience, and the real business goal before making anything.",
     accent: "red",
   },
   {
     number: "02.",
-    title: "[FILL: step 2 title]",
-    detail: "[FILL: step 2 detail]",
+    title: "Create practical output",
+    detail: "We produce creatives, videos, films, ads, and event assets that can be used immediately.",
     accent: "blue",
   },
   {
     number: "03.",
-    title: "[FILL: step 3 title]",
-    detail: "[FILL: step 3 detail]",
+    title: "Scale visibility",
+    detail: "We build content systems that improve reach, credibility, and conversion over time.",
     accent: "green",
   },
 ];
@@ -52,11 +52,11 @@ export function GlassCardsRandom() {
           <div className={styles.mediaOverlay} aria-hidden="true" />
 
           <h2 id="methodology-title" className={`${styles.mediaTitle} display-s`}>
-            [FILL: methodology title]
+            A content system that works
           </h2>
 
           <a href="#" className={styles.mediaButton}>
-            <span>[FILL: methodology CTA]</span>
+            <span>Our Approach</span>
             <span aria-hidden="true">→</span>
           </a>
         </div>

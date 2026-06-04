@@ -32,7 +32,7 @@ export const Offcanvas = ({ onClose }: OffcanvasProps) => {
         className={`${styles.backdrop} ${styles.backdropActive}`} 
         onClick={onClose}
         aria-hidden="true"
-        aria-label="[FILL: close backdrop label]"
+        aria-label="Close backdrop"
       />
       
       <aside 
@@ -43,18 +43,18 @@ export const Offcanvas = ({ onClose }: OffcanvasProps) => {
         aria-labelledby="offcanvas-title"
       >
         <div className={styles.header}>
-          <h3 id="offcanvas-title" className="display-xxs">[FILL: offcanvas title]</h3>
+          <h3 id="offcanvas-title" className="display-xxs">Start a CCP project</h3>
           <button 
             className={styles.closeBtn} 
             onClick={onClose}
-            aria-label="[FILL: close label]"
+            aria-label="Close"
           >
-            [FILL: close label]
+            Close
           </button>
         </div>
         
         <div className={styles.body}>
-          <p className="text-m">[FILL: offcanvas content/form]</p>
+          <p className="text-m">Tell us what you want to build — a campaign, event coverage, a corporate film, ads, a virtual tour, or education-focused content.</p>
         </div>
       </aside>
     </>

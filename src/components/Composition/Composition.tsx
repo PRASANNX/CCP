@@ -44,17 +44,17 @@ export function Composition() {
         
         <div className={styles.intro} data-reveal>
           <h2 id="composition-title" className={`display-m ${styles.title}`}>
-            <span>[FILL: solution title line 1]</span>
-            <span>[FILL: solution title line 2]</span>
+            <span>Content</span>
+            <span>experience</span>
             <span className={styles.lineWithShape}>
               <span className={styles.shape} aria-hidden="true" />
-              [FILL: solution title line 3]
+              and
             </span>
-            <span>[FILL: solution title line 4]</span>
+            <span>results</span>
           </h2>
           <div className={styles.summary}>
             <p className="text-l">
-              [FILL: solution abstract]
+              CCP combines creatives, videos, event coverage, social media systems, ads, virtual tours, and corporate films to help brands present themselves better and move audiences to action.
             </p>
           </div>
         </div>
@@ -67,7 +67,7 @@ export function Composition() {
           
           {/* Empty Media Card */}
           <div className={`${styles.card} ${styles.mediaCard}`} data-mosaic-card>
-            <span className={styles.mediaPlaceholder}>[FILL: media block]</span>
+            <span className={styles.mediaPlaceholder}>Event production team documenting a live moment</span>
           </div>
           
           {/* Round Dark Card */}
@@ -86,10 +86,10 @@ export function Composition() {
           <div className={`${styles.card} ${styles.metricCard}`} data-mosaic-card>
             <div className={styles.metricWrap}>
               <div className={styles.metric}>
-                [FILL: M1]
+                100+
               </div>
               <p className="display-xxs" style={{ marginTop: '2rem' }}>
-                [FILL: big metric label]
+                Assets built with purpose
               </p>
             </div>
           </div>

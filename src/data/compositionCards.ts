@@ -8,10 +8,10 @@ export interface CompositionCard {
 }
 
 export const compositionCards: CompositionCard[] = [
-  { type: 'text', title: '[FILL: Comp heading 1]', color: 'green' },
-  { type: 'number', title: '[FILL: Comp metric label]', value: '99', color: 'black' },
-  { type: 'text', title: '[FILL: Comp heading 2]', color: 'red', span: 'wide' },
-  { type: 'media', alt: '[FILL: Media placeholder alt text]', span: 'tall' },
-  { type: 'text', title: '[FILL: Comp heading 3]', color: 'blue' },
-  { type: 'text', title: '[FILL: Comp heading 4]', color: 'black' },
+  { type: 'text', title: 'Content Lab', color: 'green' },
+  { type: 'number', title: 'Assets built with purpose', value: '99', color: 'black' },
+  { type: 'text', title: 'Events', color: 'red', span: 'wide' },
+  { type: 'media', alt: 'Event production team documenting a live moment', span: 'tall' },
+  { type: 'text', title: 'Corporate Films', color: 'blue' },
+  { type: 'text', title: 'Education', color: 'black' },
 ];

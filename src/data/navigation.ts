@@ -7,21 +7,21 @@ export interface NavItem {
 
 export const navigation: NavItem[] = [
   {
-    label: '[FILL: Nav 1]',
+    label: 'Segments',
     href: '#',
     rel: 'nav-1',
     children: [
-      { label: '[FILL: Sub-link 1a]', href: '#' },
-      { label: '[FILL: Sub-link 1b]', href: '#' },
+      { label: 'Education & Institutions', href: '#' },
+      { label: 'Corporate Brands', href: '#' },
     ],
   },
   {
-    label: '[FILL: Nav 2]',
+    label: 'Offerings',
     href: '#',
     rel: 'nav-2',
     children: [
-      { label: '[FILL: Sub-link 2a]', href: '#' },
-      { label: '[FILL: Sub-link 2b]', href: '#' },
+      { label: 'Content-Led Marketing', href: '#' },
+      { label: 'Event Coverage & Films', href: '#' },
     ],
   },
 ];

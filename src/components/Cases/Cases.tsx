@@ -40,7 +40,7 @@ export function Cases() {
       <div className={styles.inner}>
         <div className={styles.header} data-reveal>
           <h2 id="cases-title" className="display-l">
-            [FILL: evidence section title]
+            Selected work across content, film & experiences
           </h2>
         </div>
 
@@ -97,7 +97,7 @@ export function Cases() {
 
         <div className={styles.actions} data-reveal>
           <a href="#cases" className={styles.button}>
-            <span>[FILL: evidence CTA]</span>
+            <span>Explore Case Structure</span>
           </a>
         </div>
       </div>

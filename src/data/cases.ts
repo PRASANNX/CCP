@@ -5,8 +5,8 @@ export interface CaseItem {
 }
 
 export const cases: CaseItem[] = [
-  { title: '[FILL: Case 1 title]', category: '[FILL: Category 1]', color: '#1a1a2e' },
-  { title: '[FILL: Case 2 title]', category: '[FILL: Category 2]', color: '#16213e' },
-  { title: '[FILL: Case 3 title]', category: '[FILL: Category 3]', color: '#0f3460' },
-  { title: '[FILL: Case 4 title]', category: '[FILL: Category 4]', color: '#1a1a1a' },
+  { title: 'Content-led brand growth', category: 'Content Strategy', color: '#1a1a2e' },
+  { title: 'Live event storytelling', category: 'Event Coverage', color: '#16213e' },
+  { title: 'Brand films that explain clearly', category: 'Corporate Film', color: '#0f3460' },
+  { title: 'Campus and institution storytelling', category: 'Education Content', color: '#1a1a1a' },
 ];

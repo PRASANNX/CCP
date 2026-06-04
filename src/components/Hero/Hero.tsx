@@ -59,24 +59,24 @@ export function Hero({ onOpenOffcanvas }: HeroProps) {
       <div className={styles.inner}>
         <div className={styles.titleWrap} data-reveal>
           <h1 id="hero-title" className={`${styles.title} display-m`} data-hero-title>
-            <span>[FILL: PROJECT TITLE LINE 1]</span>
-            <span>[FILL: PROJECT TITLE LINE 2]</span>
+            <span>Content</span>
+            <span>that drives</span>
             <span className={styles.lineWithShape}>
               <span className={styles.shape} aria-hidden="true" />
-              [FILL: PROJECT TITLE LINE 3]
+              attention, trust
             </span>
-            <span>[FILL: PROJECT TITLE LINE 4]</span>
+            <span>and results</span>
           </h1>
         </div>
 
         <div className={styles.copyBlock}>
           <p className={`${styles.copy} text-xl`} data-hero-copy>
-            [FILL: abstract]
+            CCP creates content-led marketing, event coverage, corporate films, social media systems, virtual tours, and immersive VR experiences for education, institutions, and growing brands. With 10–12 years of marketing experience, we focus on work that does more than look good — it builds visibility, credibility, and action.
           </p>
 
           <div className={styles.actions} data-hero-actions>
             <a href="#model" className={styles.button}>
-              <span>[FILL: HERO CTA 1]</span>
+              <span>View Offerings</span>
               <span className={styles.buttonIcon} aria-hidden="true">
                 →
               </span>
@@ -87,7 +87,7 @@ export function Hero({ onOpenOffcanvas }: HeroProps) {
               className={styles.button}
               onClick={onOpenOffcanvas}
             >
-              <span>[FILL: HERO CTA 2]</span>
+              <span>Start Conversation</span>
               <span className={styles.buttonIcon} aria-hidden="true">
                 →
               </span>

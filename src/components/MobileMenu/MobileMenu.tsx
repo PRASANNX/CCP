@@ -33,14 +33,14 @@ export const MobileMenu = ({ onClose, onOpenOffcanvas }: MobileMenuProps) => {
       aria-modal="true"
     >
       <div className={styles.header}>
-        <div className={styles.brand}>[FILL: org name]</div>
+        <div className={styles.brand}>CCP</div>
         <button className={styles.closeBtn} onClick={onClose} aria-label="Close menu">
           CLOSE
         </button>
       </div>
       
       <div className={styles.body}>
-        <nav aria-label="[FILL: mobile nav label]">
+        <nav aria-label="Mobile Navigation">
           <ul>
             {navigation.map((item) => (
               <li key={item.label}>
@@ -71,7 +71,7 @@ export const MobileMenu = ({ onClose, onOpenOffcanvas }: MobileMenuProps) => {
             onOpenOffcanvas();
           }}
         >
-          [FILL: contact label]
+          Contact
         </button>
       </div>
     </div>

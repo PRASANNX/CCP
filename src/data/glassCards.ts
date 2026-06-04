@@ -4,8 +4,8 @@ export interface GlassCard {
 }
 
 export const glassCards: GlassCard[] = [
-  { title: '[FILL: Audience Path 1]', desc: '[FILL: Path 1 detail description]' },
-  { title: '[FILL: Audience Path 2]', desc: '[FILL: Path 2 detail description]' },
-  { title: '[FILL: Audience Path 3]', desc: '[FILL: Path 3 detail description]' },
-  { title: '[FILL: Audience Path 4]', desc: '[FILL: Path 4 detail description]' },
+  { title: 'Education brands', desc: 'Build stronger visibility, student engagement, and campus communication with content that feels active and relevant.' },
+  { title: 'Event teams', desc: 'Capture events properly with clean coverage, highlight edits, and story-led delivery.' },
+  { title: 'Corporate teams', desc: 'Use corporate films and branded content to communicate clearly and professionally.' },
+  { title: 'Local businesses', desc: 'Turn everyday content into trust, reach, and more polished public perception.' },
 ];

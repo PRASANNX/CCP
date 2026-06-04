@@ -6,10 +6,10 @@ export function Partners() {
     <section className={styles.partners} data-component="partners">
       <div className={styles.inner}>
         <h2 className={`${styles.heading} display-s`} data-reveal>
-          [FILL: Innovation Partners title]
+          Segments We Work With
         </h2>
 
-        <div className={styles.logoGrid} aria-label="[FILL: partners grid aria label]">
+        <div className={styles.logoGrid} aria-label="Segments We Work With">
           {partners.map((partner) => (
             <div key={partner.name} className={styles.logoItem} data-reveal>
               {partner.name}

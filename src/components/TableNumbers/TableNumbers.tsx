@@ -7,7 +7,9 @@ import { metrics } from "../../data/metrics";
 gsap.registerPlugin(ScrollTrigger);
 
 function parseMetric(value: string) {
-  if (value.includes("[FILL:")) return null;
+  if (!/^\$?\d+(\.\d+)?[A-Za-z+%]*$/.test(value)) {
+    return null;
+  }
 
   const match = value.match(/^(\$)?(\d+(?:\.\d+)?)(.*)$/);
 
@@ -70,12 +72,12 @@ export function TableNumbers() {
     >
       <div className={styles.inner}>
         <h2 id="proof-title" className={`${styles.heading} display-l`} data-reveal>
-          <span>[FILL: proof title line 1]</span>
+          <span>Proof</span>
           <span className={styles.headingLineWithShape}>
             <span className={styles.shape} aria-hidden="true" />
-            [FILL: proof title line 2]
+            in
           </span>
-          <span>[FILL: proof title line 3]</span>
+          <span>outcomes</span>
         </h2>
 
         <div className={styles.table}>
