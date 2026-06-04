@@ -1,0 +1,300 @@
+.section {
+  background: var(--white, #f7f3ea);
+  color: var(--black, #111);
+  padding: clamp(100px, 10vw, 180px) 0;
+}
+
+.inner {
+  width: min(92vw, 1500px);
+  margin-inline: auto;
+}
+
+/* ============================= */
+/* HEADER                        */
+/* ============================= */
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: clamp(32px, 7vw, 120px);
+  align-items: end;
+  margin-bottom: clamp(48px, 6vw, 100px);
+}
+
+.eyebrow {
+  grid-column: 1 / -1;
+  margin: 0 0 10px;
+  color: rgba(0, 0, 0, 0.48);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(60px, 8vw, 150px);
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  font-weight: 500;
+}
+
+.headingLine {
+  display: block;
+}
+
+.description {
+  margin: 0;
+  max-width: 560px;
+  justify-self: end;
+  color: rgba(0, 0, 0, 0.62);
+  font-size: clamp(16px, 1.2vw, 22px);
+  line-height: 1.45;
+}
+
+/* ============================= */
+/* GRID                          */
+/* ============================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* ============================= */
+/* CARD                          */
+/* ============================= */
+
+.card {
+  position: relative;
+  min-height: 420px;
+  border-radius: 28px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: clamp(24px, 3vw, 44px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 56px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
+.cardActive {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.card:focus-visible {
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.12),
+    0 0 0 3px rgba(0, 0, 0, 0.22);
+}
+
+/* ============================= */
+/* CARD TOP                      */
+/* ============================= */
+
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.48);
+}
+
+.metricRow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.metricValue {
+  font-family: var(--font-primary);
+  font-size: clamp(52px, 6vw, 110px);
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  font-weight: 500;
+}
+
+.trend {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.trendUp {
+  color: #008f6b;
+}
+
+.trendDown {
+  color: #c5333b;
+}
+
+.trendNeutral {
+  color: rgba(0, 0, 0, 0.42);
+}
+
+/* ============================= */
+/* CHART                         */
+/* ============================= */
+
+.chartWrap {
+  flex: 1;
+  min-height: 100px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.chartSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chartArea {
+  fill: rgba(139, 220, 255, 0.12);
+}
+
+.chartPath {
+  fill: none;
+  stroke: #8bdcff;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chartPathActive {
+  stroke-dasharray: var(--path-length);
+  stroke-dashoffset: 0;
+  animation: drawLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: var(--path-length);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.chartLabel {
+  font-size: 11px;
+  font-weight: 700;
+  fill: rgba(0, 0, 0, 0.32);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ============================= */
+/* CARD BOTTOM                   */
+/* ============================= */
+
+.cardBottom {
+  display: grid;
+  gap: 6px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease;
+}
+
+.cardBottomVisible {
+  max-height: 120px;
+  opacity: 1;
+}
+
+.cardDescription {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.56);
+  font-size: clamp(14px, 0.9vw, 16px);
+  line-height: 1.45;
+}
+
+/* ============================= */
+/* RESPONSIVE                    */
+/* ============================= */
+
+@media (max-width: 1100px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .description {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 340px;
+  }
+
+  .metricValue {
+    font-size: clamp(48px, 12vw, 72px);
+  }
+}
+
+@media (max-width: 460px) {
+  .section {
+    padding: 72px 0;
+  }
+
+  .card {
+    min-height: 300px;
+    border-radius: 22px;
+    padding: 22px;
+  }
+}
+
+/* ============================= */
+/* REDUCED MOTION                */
+/* ============================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none !important;
+  }
+
+  .cardBottom {
+    transition: none !important;
+  }
+
+  .chartPathActive {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
