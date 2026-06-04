@@ -46,7 +46,7 @@ export const Header = ({
         <div className="container">
           <div className={styles.inner}>
             <a href="/" className={styles.brand}>
-              <img src={logo} alt="CCProductions" style={{ height: '28px', width: 'auto', display: 'block' }} />
+              <img src={logo} alt="CCProductions" style={{ height: '42px', width: 'auto', display: 'block' }} />
             </a>
 
             <nav className={`${styles.nav} desktopOnly`}>

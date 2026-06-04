@@ -9,7 +9,7 @@ export const Footer = () => {
     <footer className={styles.footer} ref={footerRef}>
       <div className="container">
         <div className={styles.top} data-reveal>
-          <img src={logo} alt="CCProductions" style={{ height: 'clamp(48px, 8vw, 100px)', width: 'auto', filter: 'invert(1) brightness(1.5)' }} />
+          <img src={logo} alt="CCProductions" style={{ height: 'clamp(72px, 12vw, 150px)', width: 'auto', filter: 'invert(1) brightness(1.5)' }} />
         </div>
 
         <hr />
