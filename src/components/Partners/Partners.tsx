@@ -52,9 +52,15 @@ export const Partners = () => {
       
       <div className={styles.marquee}>
         <div className={styles.track} ref={track1Ref}>
-          {/* Double up for infinite seamless scroll */}
-          {[...partnersRow1, ...partnersRow1].map((p, i) => (
+          {/* Original set */}
+          {partnersRow1.map((p, i) => (
             <div key={`r1-${i}`} className={styles.logo}>
+              {p.name}
+            </div>
+          ))}
+          {/* Duplicate set for infinite scroll */}
+          {partnersRow1.map((p, i) => (
+            <div key={`r1-dup-${i}`} className={styles.logo} aria-hidden="true">
               {p.name}
             </div>
           ))}
@@ -63,8 +69,15 @@ export const Partners = () => {
 
       <div className={styles.marquee}>
         <div className={`${styles.track} ${styles.trackReverse}`} ref={track2Ref}>
-          {[...partnersRow2, ...partnersRow2].map((p, i) => (
+          {/* Original set */}
+          {partnersRow2.map((p, i) => (
             <div key={`r2-${i}`} className={styles.logo}>
+              {p.name}
+            </div>
+          ))}
+          {/* Duplicate set for infinite scroll */}
+          {partnersRow2.map((p, i) => (
+            <div key={`r2-dup-${i}`} className={styles.logo} aria-hidden="true">
               {p.name}
             </div>
           ))}

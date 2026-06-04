@@ -29,6 +29,7 @@ export const Offcanvas = () => {
         role="dialog"
         aria-modal="true"
         aria-hidden={!isOpen}
+        {...(!isOpen ? { hidden: true, inert: true } : {})}
       >
         <div className={styles.header}>
           <h3 className="display-xxs">[FILL: offcanvas title]</h3>
