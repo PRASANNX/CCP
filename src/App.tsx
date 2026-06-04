@@ -3,7 +3,7 @@ import { Loader } from "./components/Loader/Loader";
 import { Header } from "./components/Header/Header";
 import { Hero } from "./components/Hero/Hero";
 import { GlassCardsRandom } from "./components/GlassCardsRandom/GlassCardsRandom";
-import { Partners } from "./components/Partners/Partners";
+import { BrandsWorkedWith } from "./components/BrandsWorkedWith/BrandsWorkedWith";
 import { FeatureCards } from "./components/FeatureCards/FeatureCards";
 import { TableNumbers } from "./components/TableNumbers/TableNumbers";
 import { Cases } from "./components/Cases/Cases";
@@ -61,7 +61,7 @@ function App() {
         <Hero onOpenOffcanvas={openOffcanvas} />
         <FounderProfile founder={founderProfile} />
         <GlassCardsRandom />
-        <Partners />
+        <BrandsWorkedWith />
         <FeatureCards />
         <TableNumbers />
         <Cases />
