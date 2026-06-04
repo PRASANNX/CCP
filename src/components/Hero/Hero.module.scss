@@ -1,41 +1,42 @@
 .hero {
   min-height: 100vh;
-  background-color: var(--black);
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  padding-top: var(--header-height);
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Mesh gradient representing the red/blue hues from the reference */
-    background: radial-gradient(circle at 80% 20%, rgba(180, 40, 60, 0.4) 0%, transparent 40%),
-                radial-gradient(circle at 20% 80%, rgba(40, 80, 160, 0.4) 0%, transparent 40%);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  > .container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-  }
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.92), rgba(0,0,0,.28), rgba(0,0,0,.85)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(59, 221, 143, .28) 0px,
+      rgba(59, 221, 143, .28) 18px,
+      rgba(255, 62, 96, .18) 18px,
+      rgba(255, 62, 96, .18) 38px,
+      rgba(70, 136, 240, .14) 38px,
+      rgba(70, 136, 240, .14) 58px
+    ),
+    var(--black);
+  background-size: cover;
+  color: var(--white);
 }
 
-.top {
-  margin-bottom: 6rem;
+.heroInner {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  padding-top: clamp(130px, 12vw, 190px);
+  padding-bottom: clamp(70px, 7vw, 120px);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
 }
 
 .title {
-  max-width: 760px;
-  /* Removed text-transform: uppercase; */
-  text-transform: none;
-
-  > span {
+  align-self: start;
+  max-width: clamp(420px, 36vw, 680px);
+  
+  h1 > span {
     display: block;
   }
 }
@@ -50,35 +51,32 @@
   margin-right: 0.08em;
 }
 
-.bottom {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: flex-end;
-
+.copyBlock {
+  align-self: end;
+  justify-self: end;
+  max-width: 480px;
+  
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    justify-self: start;
+    margin-top: 4rem;
   }
 }
 
 .copyWrapper {
-  max-width: 500px;
+  margin-bottom: 2rem;
 }
 
 .actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 1rem;
-
-  @media (max-width: 768px) {
-    justify-content: flex-start;
-  }
   
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    background: transparent;
+    border-radius: 999px;
   }
 }
 

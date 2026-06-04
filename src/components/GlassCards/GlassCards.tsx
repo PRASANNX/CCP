@@ -1,7 +1,6 @@
 import styles from './GlassCards.module.scss';
 import { glassCards } from '../../data/glassCards';
 import { useReveal } from '../../hooks/useReveal';
-import { useMagnetic } from '../../hooks/useMagnetic';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -9,13 +8,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 const GlassCard = ({ data }: { data: any }) => {
-  const ref = useMagnetic<HTMLDivElement>({ strength: 0.05, rotate: 1 });
   return (
     <div className={styles.card}>
-      <div ref={ref} className={styles.magneticInner}>
-        <h3 className="display-xs">{data.title}</h3>
-        <p className="text-m" style={{ marginTop: '2rem' }}>{data.desc}</p>
-      </div>
+      <h3 className="display-xs">{data.title}</h3>
+      <p className="text-m" style={{ marginTop: '2rem', opacity: 0.8 }}>{data.desc}</p>
+      <div className={styles.plus}>+</div>
     </div>
   );
 };
@@ -27,19 +24,21 @@ export const GlassCards = () => {
   return (
     <section className={styles.section} ref={sectionRef}>
       <div className="container">
-        <div style={{ marginBottom: '4rem' }} data-reveal>
-          <h2 className="display-l">
-            [FILL: audience path title line 1]<br/>
-            <span className={styles.shape} aria-hidden="true" />
-            [FILL: audience path title line 2]<br/>
-            [FILL: audience path title line 3]
+        <div className={styles.heading} data-reveal>
+          <h2 className="display-l" style={{textTransform: 'none'}}>
+            <span>[FILL: audience path title line 1]</span>
+            <span>
+              <span className={styles.shape} aria-hidden="true" />
+              [FILL: audience path title line 2]
+            </span>
+            <span>[FILL: audience path title line 3]</span>
           </h2>
         </div>
         
         {!isMobile ? (
           /* Desktop Grid */
-          <div className={styles.desktopGrid}>
-            {glassCards.map((card, i) => (
+          <div className={styles.cardsGrid}>
+            {glassCards.slice(0, 4).map((card, i) => (
               <div key={i} data-reveal>
                 <GlassCard data={card} />
               </div>
@@ -54,11 +53,12 @@ export const GlassCards = () => {
               slidesPerView={1.08}
               pagination={{ clickable: true }}
             >
-              {glassCards.map((card, i) => (
+              {glassCards.slice(0, 4).map((card, i) => (
                 <SwiperSlide key={i}>
-                  <div className={styles.mobileCard}>
+                  <div className={styles.card}>
                     <h3 className="display-xs">{card.title}</h3>
-                    <p className="text-m" style={{ marginTop: '1rem' }}>{card.desc}</p>
+                    <p className="text-m" style={{ marginTop: '1rem', opacity: 0.8 }}>{card.desc}</p>
+                    <div className={styles.plus}>+</div>
                   </div>
                 </SwiperSlide>
               ))}

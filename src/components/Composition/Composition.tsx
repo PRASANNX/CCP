@@ -1,66 +1,66 @@
 import styles from './Composition.module.scss';
-import { compositionCards } from '../../data/compositionCards';
 import { useReveal } from '../../hooks/useReveal';
-import { useMagnetic } from '../../hooks/useMagnetic';
-
-const CompCard = ({ data }: { data: any }) => {
-  const ref = useMagnetic<HTMLDivElement>({ strength: 0.05, rotate: 1 });
-  
-  if (data.type === 'text') {
-    return (
-      <div className={`${styles.card} ${styles[data.color]} ${data.span ? styles[data.span] : ''}`}>
-        <div className={styles.magneticInner} ref={ref}>
-          <h3 className="display-xxs">{data.title}</h3>
-        </div>
-      </div>
-    );
-  }
-  
-  if (data.type === 'number') {
-    return (
-      <div className={`${styles.card} ${styles.numberCard} ${data.span ? styles[data.span] : ''}`}>
-        <div className={styles.magneticInner} ref={ref}>
-          <div className="display-l">{data.value}</div>
-          <p className="label">{data.title}</p>
-        </div>
-      </div>
-    );
-  }
-  
-  return (
-    <div className={`${styles.card} ${styles.mediaCard} ${data.span ? styles[data.span] : ''}`}>
-      <div className={styles.magneticInner} ref={ref}>
-        <span>{data.alt}</span>
-      </div>
-    </div>
-  );
-};
+import { compositionCards } from '../../data/compositionCards';
 
 export const Composition = () => {
-  const headerRef = useReveal<HTMLDivElement>();
+  const sectionRef = useReveal<HTMLElement>();
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} ref={sectionRef} data-stagger-parent>
       <div className="container">
         
-        <div className={styles.header} ref={headerRef} data-reveal>
-          <h2 className="display-m">
-            [FILL: composition title line 1]<br/>
-            [FILL: composition title line 2]<br/>
-            <span className={styles.shape} aria-hidden="true"></span><br/>
-            [FILL: composition title line 3]
+        <div className={styles.intro}>
+          <h2 className={`display-m ${styles.title}`} style={{textTransform: 'none'}}>
+            <span>[FILL: solution title line 1]</span>
+            <span>[FILL: solution title line 2]</span>
+            <span>
+              <span className={styles.shape} aria-hidden="true" />
+              [FILL: solution title line 3]
+            </span>
+            <span>[FILL: solution title line 4]</span>
           </h2>
-          <p className="text-xl">[FILL: composition summary]</p>
+          <div className={styles.summary}>
+            <p className="text-l">
+              [FILL: solution abstract]
+            </p>
+          </div>
         </div>
-        
+
         <div className={styles.grid}>
-          {compositionCards.map((c, i) => (
-            <div key={i} data-composition-card>
-              <CompCard data={c} />
+          {/* Green Card */}
+          <div className={`${styles.card} ${styles.greenCard}`} data-stagger-child>
+            <h3 className="display-xs">{compositionCards[0]?.title}</h3>
+          </div>
+          
+          {/* Empty Media Card */}
+          <div className={`${styles.card} ${styles.mediaCard}`} data-stagger-child>
+            <span style={{color: 'var(--grey)', fontSize: '14px'}}>[FILL: media block]</span>
+          </div>
+          
+          {/* Round Dark Card */}
+          <div className={`${styles.card} ${styles.roundCard}`} style={{justifyContent: 'center', alignItems: 'center'}} data-stagger-child>
+            <h3 className="display-xs" style={{color: 'var(--white)'}}>{compositionCards[1]?.title}</h3>
+          </div>
+          
+          {/* Blue Card */}
+          <div className={`${styles.card} ${styles.blueCard}`} data-stagger-child>
+            <h3 className="display-xs">{compositionCards[2]?.title}</h3>
+          </div>
+
+          {/* Huge Metric Card */}
+          <div className={`${styles.card} ${styles.metricCard}`} data-stagger-child>
+            <div>
+              <div className={styles.metric}>
+                [FILL: M1]
+              </div>
+              <p className="display-xxs" style={{marginTop: '2rem'}}>
+                [FILL: big metric label]
+              </p>
             </div>
-          ))}
+          </div>
+          
         </div>
-        
+
       </div>
     </section>
   );

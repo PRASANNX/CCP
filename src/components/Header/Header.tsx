@@ -65,7 +65,7 @@ export const Header = ({
 
             <div className={styles.actions}>
               <button
-                className={`btn btn--dark desktopOnly`}
+                className={`${styles.contactBtn} desktopOnly`}
                 ref={ctaRef}
                 onClick={onOpenOffcanvas}
               >

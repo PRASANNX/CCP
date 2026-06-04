@@ -1,5 +1,12 @@
 .footer {
-  background: var(--black);
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.88), rgba(0,0,0,.42), rgba(0,0,0,.88)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,62,96,.18) 0 22px,
+      rgba(70,136,240,.12) 22px 44px
+    ),
+    var(--black);
   color: var(--white);
   padding: clamp(80px, 8vw, 150px) 0 32px;
 }

@@ -8,6 +8,8 @@ import { useReveal } from '../../hooks/useReveal';
 gsap.registerPlugin(ScrollTrigger);
 
 function parseMetric(value: string) {
+  if (value.includes("[FILL:")) return null;
+
   const match = value.match(/^\$?(\d+(?:\.\d+)?)(.*)$/);
   if (!match) return null;
 
