@@ -241,12 +241,12 @@ export function TableNumbers() {
       <div className={styles.inner}>
         <div className={styles.header}>
           <h2 id="proof-title" className={`${styles.heading} display-l`} data-reveal>
-            <span>Proof</span>
+            <span className={styles.headingLine}>Proof</span>
             <span className={styles.headingLineWithShape}>
               <span className={styles.shape} aria-hidden="true" />
               in
             </span>
-            <span>outcomes</span>
+            <span className={styles.headingLine}>outcomes</span>
           </h2>
         </div>
 

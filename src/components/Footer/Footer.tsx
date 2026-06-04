@@ -16,7 +16,7 @@ export const Footer = () => {
         
         <div className={styles.middle} data-reveal>
           <div className={styles.newsletter}>
-            <h3 className="display-xs">Start the conversation</h3>
+            <h2 className={styles.footerTitle}>Start the conversation</h2>
             <p className="text-m">Share your brand, campus, event, or campaign goals and we’ll map the right content structure.</p>
             <div className={styles.formPlaceholder}>Enter email / request proposal</div>
           </div>

@@ -59,13 +59,13 @@ export function Hero({ onOpenOffcanvas }: HeroProps) {
       <div className={styles.inner}>
         <div className={styles.titleWrap} data-reveal>
           <h1 id="hero-title" className={`${styles.title} display-m`} data-hero-title>
-            <span>Content</span>
-            <span>that drives</span>
+            <span className={styles.headingLine}>Content</span>
+            <span className={styles.headingLine}>that drives</span>
             <span className={styles.lineWithShape}>
               <span className={styles.shape} aria-hidden="true" />
               attention, trust
             </span>
-            <span>and results</span>
+            <span className={styles.headingLine}>and results</span>
           </h1>
         </div>
 

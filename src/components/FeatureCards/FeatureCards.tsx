@@ -37,9 +37,9 @@ export function FeatureCards() {
       aria-labelledby="feature-cards-title"
     >
       <div className={styles.headingWrap} data-reveal>
-        <h2 id="feature-cards-title" className={`${styles.heading} display-s`}>
-          <span>What makes</span>
-          <span>CCP</span>
+        <h2 id="feature-title" className={`${styles.heading} display-m`} data-reveal>
+          <span className={styles.headingLine}>What makes</span>
+          <span className={styles.headingLine}>CCP</span>
           <span className={styles.headingLineWithShape}>
             <span className={styles.shape} aria-hidden="true" />
             different

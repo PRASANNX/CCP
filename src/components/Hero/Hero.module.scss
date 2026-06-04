@@ -114,7 +114,7 @@
   width: min(92vw, 1760px);
   min-height: 100vh;
   margin-inline: auto;
-  padding-top: clamp(130px, 12vw, 210px);
+  padding-top: calc(var(--header-height, 100px) + clamp(80px, 8vw, 140px));
   padding-bottom: clamp(70px, 7vw, 120px);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -130,7 +130,7 @@
   color: var(--white);
 }
 
-.title > span {
+.headingLine {
   display: block;
 }
 
@@ -163,7 +163,8 @@
 
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 14px;
+  align-items: center;
   flex-wrap: wrap;
 }
 

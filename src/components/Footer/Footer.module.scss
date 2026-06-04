@@ -8,7 +8,14 @@
     ),
     var(--black);
   color: var(--white);
-  padding: clamp(80px, 8vw, 150px) 0 32px;
+  padding: clamp(96px, 10vw, 180px) 0 42px;
+}
+
+.footerTitle {
+  font-size: clamp(56px, 7vw, 136px);
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+  margin-bottom: 24px;
 }
 
 .top {

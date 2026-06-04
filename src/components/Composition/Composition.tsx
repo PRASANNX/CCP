@@ -44,13 +44,13 @@ export function Composition() {
         
         <div className={styles.intro} data-reveal>
           <h2 id="composition-title" className={`display-m ${styles.title}`}>
-            <span>Content</span>
-            <span>experience</span>
+            <span className={styles.headingLine}>Content</span>
+            <span className={styles.headingLine}>experience</span>
             <span className={styles.lineWithShape}>
               <span className={styles.shape} aria-hidden="true" />
               and
             </span>
-            <span>results</span>
+            <span className={styles.headingLine}>results</span>
           </h2>
           <div className={styles.summary}>
             <p className="text-l">

@@ -16,7 +16,7 @@
   max-width: clamp(420px, 38vw, 720px);
 }
 
-.heading span {
+.headingLine {
   display: block;
 }
 
@@ -56,7 +56,7 @@
   position: relative;
   flex: 1 1 0;
   min-width: 0;
-  height: clamp(560px, 44vw, 840px);
+  height: clamp(380px, 34vw, 620px);
   transition:
     flex 0.65s var(--ease),
     transform 0.45s var(--ease);
@@ -261,7 +261,7 @@
   .card,
   .card.active {
     flex: 0 0 82vw;
-    height: 560px;
+    height: 460px;
     scroll-snap-align: start;
   }
 

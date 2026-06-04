@@ -24,16 +24,14 @@ export const GlassCards = () => {
   return (
     <section className={styles.section} ref={sectionRef}>
       <div className="container">
-        <div className={styles.heading} data-reveal>
-          <h2 className="display-l" style={{textTransform: 'none'}}>
-            <span>Built for</span>
-            <span>
-              <span className={styles.shape} aria-hidden="true" />
-              brands that
-            </span>
-            <span>need more than content</span>
-          </h2>
-        </div>
+        <h2 id="audience-title" className={`${styles.heading} display-m`} data-reveal>
+          <span className={styles.headingLine}>Built for</span>
+          <span className={styles.headingLine}>brands that</span>
+          <span className={styles.headingLineWithShape}>
+            <span className={styles.shape} aria-hidden="true" />
+            need more than content
+          </span>
+        </h2>
         
         {!isMobile ? (
           /* Desktop Grid */
