@@ -59,6 +59,7 @@ function App() {
 
       <main id="top">
         <Hero onOpenOffcanvas={openOffcanvas} />
+        <FounderProfile founder={founderProfile} />
         <GlassCardsRandom />
         <Partners />
         <FeatureCards />
@@ -66,7 +67,6 @@ function App() {
         <Cases />
         <GlassCards />
         <Composition />
-        <FounderProfile founder={founderProfile} />
       </main>
 
       <Footer />
