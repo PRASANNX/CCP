@@ -1,6 +1,5 @@
 import styles from './Hero.module.scss';
 import { useReveal } from '../../hooks/useReveal';
-import heroImg from '../../assets/hero.png';
 
 export const Hero = () => {
   const ctaRef = useReveal<HTMLDivElement>({ delay: 0.6 });
@@ -12,9 +11,7 @@ export const Hero = () => {
           <h1 className="hero-title-reveal display-xl">
             [FILL: PROJECT TITLE LINE 1]
             <br />
-            <span className={styles.inlineMedia}>
-              <img src={heroImg} alt="" aria-hidden="true" />
-            </span>
+            <span className={styles.shape} aria-hidden="true"></span>
             [FILL: PROJECT TITLE LINE 2]
             <br />
             [FILL: PROJECT TITLE LINE 3]

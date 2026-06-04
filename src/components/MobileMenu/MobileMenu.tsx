@@ -20,7 +20,6 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       aria-hidden={!isOpen}
       role="dialog"
       aria-modal="true"
-      {...(!isOpen ? { hidden: true, inert: true } : {})}
     >
       <div className={styles.header}>
         <div className={styles.brand}>[FILL: org name]</div>

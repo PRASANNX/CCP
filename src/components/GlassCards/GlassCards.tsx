@@ -23,6 +23,14 @@ export const GlassCards = () => {
   return (
     <section className={styles.section} ref={sectionRef} data-stagger-parent>
       <div className="container">
+        <div style={{ marginBottom: '4rem' }} data-stagger-child>
+          <h2 className="display-m">
+            [FILL: audience path title line 1]<br/>
+            <span className={styles.shape} aria-hidden="true"></span><br/>
+            [FILL: audience path title line 2]<br/>
+            [FILL: audience path title line 3]
+          </h2>
+        </div>
         
         {!isMobile ? (
           /* Desktop Grid */

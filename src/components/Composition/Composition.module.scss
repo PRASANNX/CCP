@@ -16,6 +16,16 @@
   }
 }
 
+.shape {
+  display: inline-block;
+  width: 1.5em;
+  height: 0.7em;
+  background-color: var(--black);
+  border-radius: 100px;
+  margin: 0 0.2em;
+  vertical-align: middle;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

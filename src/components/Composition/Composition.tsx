@@ -38,8 +38,13 @@ export const Composition = () => {
       <div className="container">
         
         <div className={styles.header} ref={headerRef}>
-          <h2 className="display-m">Composition</h2>
-          <p className="text-xl">A mosaic grid representation.</p>
+          <h2 className="display-m">
+            [FILL: composition title line 1]<br/>
+            [FILL: composition title line 2]<br/>
+            <span className={styles.shape} aria-hidden="true"></span><br/>
+            [FILL: composition title line 3]
+          </h2>
+          <p className="text-xl">[FILL: composition summary]</p>
         </div>
         
         <div className={styles.grid}>

@@ -31,6 +31,15 @@ export const FeatureCards = () => {
     <section className={styles.section} ref={sectionRef} data-stagger-parent>
       <div className="container">
         
+        <div className={styles.sectionHeader}>
+          <h2 className="display-m">
+            [FILL: difference title line 1]<br/>
+            [FILL: difference title line 2]<br/>
+            <span className={styles.shape} aria-hidden="true"></span><br/>
+            [FILL: difference title line 3]
+          </h2>
+        </div>
+        
         {!isMobile ? (
           /* Desktop Grid */
           <div className={styles.desktopGrid}>

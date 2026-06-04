@@ -83,10 +83,12 @@ export const Header = () => {
         aria-hidden="true"
       />
 
-      <MobileMenu
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      />
+      {mobileMenuOpen && (
+        <MobileMenu
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+        />
+      )}
     </>
   );
 };

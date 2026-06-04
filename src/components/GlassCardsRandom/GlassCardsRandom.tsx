@@ -18,13 +18,6 @@ export const GlassCardsRandom = () => {
   const sectionRef = useReveal<HTMLDivElement>();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const cards = [
-    { title: '[FILL: glass card 1]', active: false },
-    { title: '[FILL: glass card 2]', active: true },
-    { title: '[FILL: glass card 3]', active: false },
-    { title: '[FILL: glass card 4]', active: false },
-  ];
-
   return (
     <section className={styles.section} ref={sectionRef} data-stagger-parent>
       <div className="container">
@@ -33,29 +26,42 @@ export const GlassCardsRandom = () => {
           /* Desktop Grid */
           <div className={styles.desktopGrid}>
             <div className={styles.centerWrap} data-stagger-child>
-              <GlassCardItem title={cards[1].title} active />
+              <GlassCardItem title="[FILL: methodology title]" active />
             </div>
             <div className={`${styles.floatCard} ${styles.pos1}`} data-stagger-child>
-              <GlassCardItem title={cards[0].title} />
+              <GlassCardItem title="[FILL: step number 1]" />
             </div>
             <div className={`${styles.floatCard} ${styles.pos2}`} data-stagger-child>
-              <GlassCardItem title={cards[2].title} />
+              <GlassCardItem title="[FILL: step number 2]" />
             </div>
             <div className={`${styles.floatCard} ${styles.pos3}`} data-stagger-child>
-              <GlassCardItem title={cards[3].title} />
+              <GlassCardItem title="[FILL: step number 3]" />
             </div>
           </div>
         ) : (
           /* Mobile Swiper */
           <div className={styles.mobileSwiper}>
             <Swiper spaceBetween={16} slidesPerView={1.2}>
-              {cards.map((card, i) => (
-                <SwiperSlide key={i}>
-                  <div className={styles.mobileCard}>
-                    <h3 className="text-xl">{card.title}</h3>
-                  </div>
-                </SwiperSlide>
-              ))}
+              <SwiperSlide>
+                <div className={`${styles.mobileCard} ${styles.activeMobile}`}>
+                  <h3 className="text-xl">[FILL: methodology title]</h3>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className={styles.mobileCard}>
+                  <h3 className="text-xl">[FILL: step number 1]</h3>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className={styles.mobileCard}>
+                  <h3 className="text-xl">[FILL: step number 2]</h3>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className={styles.mobileCard}>
+                  <h3 className="text-xl">[FILL: step number 3]</h3>
+                </div>
+              </SwiperSlide>
             </Swiper>
           </div>
         )}

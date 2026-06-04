@@ -59,9 +59,9 @@ export const Partners = () => {
             </div>
           ))}
           {/* Duplicate set for infinite scroll */}
-          {partnersRow1.map((p, i) => (
+          {partnersRow1.map((_, i) => (
             <div key={`r1-dup-${i}`} className={styles.logo} aria-hidden="true">
-              {p.name}
+              <span aria-hidden="true"></span>
             </div>
           ))}
         </div>
@@ -76,9 +76,9 @@ export const Partners = () => {
             </div>
           ))}
           {/* Duplicate set for infinite scroll */}
-          {partnersRow2.map((p, i) => (
+          {partnersRow2.map((_, i) => (
             <div key={`r2-dup-${i}`} className={styles.logo} aria-hidden="true">
-              {p.name}
+              <span aria-hidden="true"></span>
             </div>
           ))}
         </div>

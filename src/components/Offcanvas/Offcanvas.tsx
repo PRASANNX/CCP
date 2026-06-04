@@ -15,21 +15,21 @@ export const Offcanvas = () => {
     return () => window.removeEventListener('open-offcanvas', handleOpen);
   }, []);
 
+  if (!isOpen) return null;
+
   return (
     <>
       <div 
-        className={`${styles.backdrop} ${isOpen ? styles.backdropActive : ''}`} 
+        className={`${styles.backdrop} ${styles.backdropActive}`} 
         onClick={() => setIsOpen(false)}
         aria-hidden="true"
       />
       
       <div 
         ref={dialogRef}
-        className={`${styles.panel} ${isOpen ? styles.panelActive : ''}`}
+        className={`${styles.panel} ${styles.panelActive}`}
         role="dialog"
         aria-modal="true"
-        aria-hidden={!isOpen}
-        {...(!isOpen ? { hidden: true, inert: true } : {})}
       >
         <div className={styles.header}>
           <h3 className="display-xxs">[FILL: offcanvas title]</h3>

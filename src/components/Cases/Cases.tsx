@@ -39,6 +39,9 @@ export const Cases = () => {
       data-stagger-parent
     >
       <div className="container">
+        <div style={{ marginBottom: '4rem' }}>
+          <h2 className="display-m" data-stagger-child>[FILL: evidence section title]</h2>
+        </div>
         
         {!isMobile ? (
           /* Desktop Grid */
@@ -67,6 +70,12 @@ export const Cases = () => {
             </Swiper>
           </div>
         )}
+
+        <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center' }} data-stagger-child>
+          <a href="#" className="btn btn--outline" style={{ borderColor: 'var(--white)', color: 'var(--white)' }}>
+            [FILL: evidence CTA]
+          </a>
+        </div>
 
       </div>
     </section>

@@ -53,7 +53,9 @@ export const TableNumbers = () => {
     <section className={styles.section} ref={sectionRef} data-stagger-parent>
       <div className="container">
         <h2 className="display-m" style={{ marginBottom: '4rem' }} data-stagger-child>
-          [FILL: methodology title]
+          [FILL: proof title line 1]<br/>
+          [FILL: proof title line 2]<br/>
+          [FILL: proof title line 3]
         </h2>
 
         <div className={styles.table}>
