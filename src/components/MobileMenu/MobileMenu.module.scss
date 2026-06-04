@@ -1,0 +1,33 @@
+.container {
+  position: fixed;
+  inset: 0;
+  background: var(--light);
+  z-index: 200;
+  transform: translateY(-100%);
+  transition: transform 0.5s var(--ease);
+  
+  &.open {
+    transform: translateY(0);
+  }
+}
+.inner {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.closeBtn {
+  align-self: flex-end;
+  background: none; border: none;
+  font-size: 1rem; text-transform: uppercase; cursor: pointer;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 4rem;
+  a {
+    text-decoration: none;
+    color: var(--black);
+  }
+}

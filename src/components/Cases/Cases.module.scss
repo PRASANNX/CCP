@@ -1,0 +1,72 @@
+.container {
+  padding: 8rem 0;
+  background-color: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.backgrounds {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+}
+.bgPanel {
+  position: absolute;
+  inset: 0;
+  background-color: #222;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 1s ease;
+  transform: scale(1.05);
+  
+  &:nth-child(even) {
+    background-color: #1a1a1a;
+  }
+  
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.desktopGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+.mobileSwiper {
+  display: none;
+  position: relative;
+  z-index: 2;
+  margin-top: 4rem;
+  
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+.card {
+  background: var(--white-20);
+  backdrop-filter: blur(10px);
+  padding: 4rem 2rem;
+  border-radius: 16px;
+  color: var(--white);
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.3s ease;
+  
+  &:hover, &:focus {
+    background: var(--white-50);
+    outline: none;
+  }
+}
+.category {
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--grey-alt);
+}

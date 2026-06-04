@@ -1,0 +1,30 @@
+.container {
+  padding: 8rem 0;
+  background-color: var(--white);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+.card {
+  padding: 3rem;
+  border-radius: 16px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.green { background: var(--green); color: var(--black); }
+.numberCard { background: var(--black); color: var(--white); }
+.mediaCard { background: var(--grey-alt); color: var(--grey); align-items: center; }

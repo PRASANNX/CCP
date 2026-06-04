@@ -1,0 +1,41 @@
+:root {
+  --font-primary: "Diagramm", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-secondary: "IBM Plex Sans", Georgia, sans-serif;
+
+  --white: #ffffff;
+  --white-20: rgba(255, 255, 255, 0.2);
+  --white-50: rgba(252, 245, 242, 0.5);
+
+  --light: #fcf5f2;
+  --medium: #d6d1d1;
+  --grey: #858585;
+  --grey-alt: #f1f1f1;
+
+  --black: #000000;
+  --dark: #1f1c1c;
+  --line: #27292a;
+
+  --mint: #c7f5f2;
+  --green: #3bdd8f;
+  --green-50: #89ebbc;
+  --green-20: #d8f8e9;
+
+  --blue: #4688f0;
+  --blue-50: #90b8f6;
+  --blue-20: #dae7fc;
+
+  --red: #ff3e60;
+  --red-50: #ff8ba0;
+  --red-20: #ffd8df;
+
+  --yellow: #fec32d;
+  --yellow-50: #fedb81;
+  --yellow-20: #fff3d5;
+
+  --ccp-orange: #f15a24;
+  --ccp-ivory: #f7f3ea;
+  --ccp-charcoal: #111111;
+
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --header-height: 74px;
+}

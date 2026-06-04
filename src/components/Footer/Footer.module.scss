@@ -1,0 +1,22 @@
+.footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 6rem 0 3rem;
+}
+.inner {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.links {
+  display: flex;
+  gap: 2rem;
+  a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.9rem;
+    &:hover { color: var(--white); }
+  }
+}

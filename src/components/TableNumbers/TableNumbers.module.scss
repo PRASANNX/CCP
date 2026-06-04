@@ -1,0 +1,23 @@
+.container {
+  padding: 8rem 0;
+  background-color: var(--white);
+}
+.table {
+  margin-top: 4rem;
+  border-top: 1px solid var(--line);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.label {
+  font-family: var(--font-secondary);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.value {
+  font-weight: bold;
+}

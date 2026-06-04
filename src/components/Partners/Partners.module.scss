@@ -1,0 +1,22 @@
+.container {
+  padding: 6rem 0;
+  background: var(--light);
+  overflow: hidden;
+}
+.marquee {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+.track {
+  display: flex;
+  width: 200%;
+  gap: 4rem;
+}
+.logo {
+  font-family: var(--font-secondary);
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--medium);
+  white-space: nowrap;
+}

@@ -1,0 +1,34 @@
+.container {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 10rem 0 6rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.title {
+  margin-bottom: 4rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  max-width: 1200px;
+}
+.oval {
+  display: inline-block;
+  width: 1.5em;
+  height: 0.8em;
+  background-color: var(--white-20);
+  border-radius: 50px;
+  margin-right: 0.2em;
+  vertical-align: middle;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+}
+.actions {
+  display: flex;
+  gap: 1rem;
+}
