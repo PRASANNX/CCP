@@ -9,6 +9,8 @@ import { TableNumbers } from "./components/TableNumbers/TableNumbers";
 import { Cases } from "./components/Cases/Cases";
 import { GlassCards } from "./components/GlassCards/GlassCards";
 import { Composition } from "./components/Composition/Composition";
+import { FounderProfile } from "./components/FounderProfile/FounderProfile";
+import { founderProfile } from "./data/founderProfile";
 import { Footer } from "./components/Footer/Footer";
 import { MobileMenu } from "./components/MobileMenu/MobileMenu";
 import { Offcanvas } from "./components/Offcanvas/Offcanvas";
@@ -64,6 +66,7 @@ function App() {
         <Cases />
         <GlassCards />
         <Composition />
+        <FounderProfile founder={founderProfile} />
       </main>
 
       <Footer />
