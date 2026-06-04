@@ -13,7 +13,7 @@ export const metrics: MetricCard[] = [
   {
     id: "reach",
     label: "Total Reach",
-    value: "1.6M",
+    value: "16M",
     trend: "↑ 100%",
     trendDirection: "up",
     description:
@@ -24,7 +24,7 @@ export const metrics: MetricCard[] = [
   {
     id: "views",
     label: "Total Views",
-    value: "2.6M",
+    value: "26M",
     trend: "↑ 44.4%",
     trendDirection: "up",
     description:
@@ -35,7 +35,7 @@ export const metrics: MetricCard[] = [
   {
     id: "engagement",
     label: "Engagement",
-    value: "312K",
+    value: "6M",
     trend: "↑ 88.2%",
     trendDirection: "up",
     description:
