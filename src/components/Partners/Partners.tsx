@@ -1,28 +1,22 @@
-import styles from './Partners.module.scss';
-import { partnersRow1, partnersRow2 } from '../../data/partners';
-import { useReveal } from '../../hooks/useReveal';
+import styles from "./Partners.module.scss";
+import { partners } from "../../data/partners";
 
-export const Partners = () => {
-  const sectionRef = useReveal<HTMLElement>();
-  
-  // Combine all partners into one array for the grid
-  const allPartners = [...partnersRow1, ...partnersRow2];
-
+export function Partners() {
   return (
-    <section className={styles.partners} ref={sectionRef}>
-      <div className="container">
-        <h2 className={`display-m ${styles.heading}`}>
+    <section className={styles.partners} data-component="partners">
+      <div className={styles.inner}>
+        <h2 className={`${styles.heading} display-s`} data-reveal>
           [FILL: Innovation Partners title]
         </h2>
-        
-        <div className={styles.logoGrid}>
-          {allPartners.map((p, i) => (
-            <div key={i} className={styles.logoItem}>
-              {p.name}
+
+        <div className={styles.logoGrid} aria-label="[FILL: partners grid aria label]">
+          {partners.map((partner) => (
+            <div key={partner.name} className={styles.logoItem} data-reveal>
+              {partner.name}
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-};
+}

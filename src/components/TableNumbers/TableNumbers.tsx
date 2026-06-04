@@ -1,103 +1,105 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import styles from './TableNumbers.module.scss';
-import { metrics } from '../../data/metrics';
-import { useReveal } from '../../hooks/useReveal';
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import styles from "./TableNumbers.module.scss";
+import { metrics } from "../../data/metrics";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function parseMetric(value: string) {
   if (value.includes("[FILL:")) return null;
 
-  const match = value.match(/^\$?(\d+(?:\.\d+)?)(.*)$/);
+  const match = value.match(/^(\$)?(\d+(?:\.\d+)?)(.*)$/);
+
   if (!match) return null;
 
   return {
-    number: Number(match[1]),
-    suffix: match[2] ?? "",
-    prefix: value.startsWith("$") ? "$" : "",
+    prefix: match[1] ?? "",
+    number: Number(match[2]),
+    suffix: match[3] ?? "",
   };
 }
 
-export const TableNumbers = () => {
-  const sectionRef = useReveal<HTMLElement>();
-  const countersRef = useRef<(HTMLSpanElement | null)[]>([]);
+export function TableNumbers() {
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      countersRef.current.forEach((counter) => {
-        if (!counter) return;
-        
-        const targetText = counter.getAttribute('data-target') || '0';
-        const parsed = parseMetric(targetText);
-        
+      section.querySelectorAll<HTMLElement>("[data-metric-value]").forEach((el) => {
+        const raw = el.dataset.value ?? "";
+        const parsed = parseMetric(raw);
+
         if (!parsed) return;
 
-        gsap.fromTo(
-          counter,
-          { innerHTML: 0 },
-          {
-            innerHTML: parsed.number,
-            duration: 2,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: counter,
-              start: 'top 85%',
-              once: true
-            },
-            snap: { innerHTML: 1 },
-            onUpdate: function () {
-              const val = Math.round(Number(this.targets()[0].innerHTML));
-              counter.innerHTML = `${parsed.prefix}${new Intl.NumberFormat('en-US').format(val)}${parsed.suffix}`;
-            }
-          }
-        );
+        const obj = { value: 0 };
+
+        gsap.to(obj, {
+          value: parsed.number,
+          duration: 1.4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            once: true,
+          },
+          onUpdate: () => {
+            el.textContent = `${parsed.prefix}${Math.round(obj.value)}${parsed.suffix}`;
+          },
+        });
       });
-    });
+    }, section);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className={styles.section} ref={sectionRef}>
-      <div className="container">
-        <h2 className="display-l" style={{ marginBottom: '4rem' }} data-reveal>
-          [FILL: proof title line 1]<br/>
-          <span className={styles.shape} aria-hidden="true" />
-          [FILL: proof title line 2]<br/>
-          [FILL: proof title line 3]
+    <section
+      ref={sectionRef}
+      className={styles.section}
+      data-component="table-numbers"
+      aria-labelledby="proof-title"
+    >
+      <div className={styles.inner}>
+        <h2 id="proof-title" className={`${styles.heading} display-l`} data-reveal>
+          <span>[FILL: proof title line 1]</span>
+          <span className={styles.headingLineWithShape}>
+            <span className={styles.shape} aria-hidden="true" />
+            [FILL: proof title line 2]
+          </span>
+          <span>[FILL: proof title line 3]</span>
         </h2>
 
         <div className={styles.table}>
-          {metrics.map((metric, i) => (
-            <div key={i} className={styles.row} data-number-row>
-              <div className={styles.colLabel}>
-                <h3 className="label" style={{textTransform: 'none', fontWeight: 600, fontSize: '16px'}}>{metric.label}</h3>
+          {metrics.map((metric) => (
+            <article className={styles.row} key={metric.label} data-number-row>
+              <h3 className={`${styles.label} text-m`}>{metric.label}</h3>
+
+              <div
+                className={styles.value}
+                data-metric-value
+                data-value={metric.value}
+              >
+                {metric.value}
               </div>
-              <div className={styles.colValue}>
-                <span className={styles.massiveNumber}>
-                  <span 
-                    ref={(el) => { countersRef.current[i] = el; }} 
-                    data-target={metric.value}
-                  >
-                    {metric.value}
-                  </span>
-                  {metric.suffix}
-                </span>
-              </div>
-              <div className={styles.colMedia}>
-                <div className={styles.photo}>
-                  <span>[FILL: TableNumbers row image {i+1}]</span>
+
+              <div className={styles.media} aria-label={metric.imageAlt}>
+                <div className={styles.mediaPlaceholder}>
+                  {metric.imageAlt}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
     </section>
   );
-};
+}

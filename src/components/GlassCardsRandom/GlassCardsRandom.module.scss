@@ -1,76 +1,149 @@
 .section {
-  padding: var(--section-pad) 0;
-  background-color: var(--black);
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.9), rgba(0,0,0,.46), rgba(0,0,0,.9)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(59, 221, 143, .18) 0 22px,
+      rgba(255, 62, 96, .14) 22px 44px
+    ),
+    var(--black);
+  color: var(--white);
+  padding: clamp(90px, 8vw, 150px) 0 clamp(100px, 10vw, 180px);
+}
+
+.inner {
+  width: min(94vw, 1760px);
+  margin-inline: auto;
+}
+
+.mediaCard {
+  position: relative;
+  min-height: clamp(360px, 42vw, 700px);
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--dark);
+  isolation: isolate;
+}
+
+.mediaTexture {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 48% 38%, rgba(255,255,255,.18), transparent 24%),
+    linear-gradient(90deg, rgba(0,0,0,.7), rgba(255,62,96,.2), rgba(70,136,240,.18)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.05) 0 20px,
+      rgba(255,255,255,.01) 20px 42px
+    );
+}
+
+.mediaOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.72), transparent 42%, rgba(0,0,0,.6));
+}
+
+.mediaTitle {
+  position: absolute;
+  right: clamp(40px, 8vw, 160px);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 520px;
   color: var(--white);
 }
 
-.banner {
-  border-radius: 28px;
-  background-color: var(--grey-alt);
-  min-height: 480px;
-  display: flex;
+.mediaButton {
+  position: absolute;
+  right: clamp(40px, 8vw, 160px);
+  bottom: clamp(34px, 5vw, 90px);
+  min-height: 52px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 999px;
+  padding: 0 18px 0 24px;
+  display: inline-flex;
+  gap: 18px;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
-  
-  /* Placeholder for banner image */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%);
-    z-index: 1;
-  }
+  color: var(--white);
+  font-weight: 700;
 }
 
-.bannerContent {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
-  max-width: 800px;
-}
-
-.grid {
+.processGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
 }
 
-.card {
-  background-color: #3d2f2d; /* Dark reddish-brown to match reference */
+.processCard {
+  min-height: clamp(240px, 20vw, 350px);
   border-radius: 24px;
-  padding: 32px;
-  min-height: 320px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(18px);
+  padding: clamp(24px, 3vw, 42px);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition:
+    background .45s var(--ease),
+    transform .45s var(--ease),
+    border-color .45s var(--ease);
 }
 
-.cardHeader {
+.processCard:hover,
+.processCard:focus-visible,
+.processCard.active {
+  background: rgba(255,255,255,.16);
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,.38);
+}
+
+.processTop {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: auto;
+  align-items: center;
 }
 
-.num {
-  font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: 1.2rem;
+.number {
+  font-weight: 800;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
 }
 
-.cardBody {
-  margin-top: 40px;
+.red { background: var(--red); }
+.blue { background: var(--blue); }
+.green { background: var(--green); }
+
+.processBottom p {
+  margin-top: 18px;
+  max-width: 320px;
+  color: rgba(255,255,255,.72);
 }
 
-.mobileSwiper {
-  margin-top: 2rem;
+.swiper {
+  margin-top: 18px;
+}
+
+@media (max-width: 768px) {
+  .mediaTitle {
+    left: 28px;
+    right: 28px;
+    top: auto;
+    bottom: 110px;
+    transform: none;
+  }
+
+  .mediaButton {
+    left: 28px;
+    right: auto;
+  }
 }

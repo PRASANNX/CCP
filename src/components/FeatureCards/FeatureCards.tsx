@@ -1,62 +1,105 @@
-import styles from './FeatureCards.module.scss';
-import { featureCards } from '../../data/featureCards';
-import { useReveal } from '../../hooks/useReveal';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { useState } from "react";
+import type { KeyboardEvent } from "react";
+import styles from "./FeatureCards.module.scss";
+import { featureCards } from "../../data/featureCards";
 
-export const FeatureCards = () => {
-  const sectionRef = useReveal<HTMLElement>();
-  const isMobile = useMediaQuery("(max-width: 768px)");
+export function FeatureCards() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleKeyDown = (
+    event: KeyboardEvent<HTMLElement>,
+    index: number
+  ) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setActiveIndex(index);
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      setActiveIndex((prev) =>
+        prev === featureCards.length - 1 ? 0 : prev + 1
+      );
+    }
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      setActiveIndex((prev) =>
+        prev === 0 ? featureCards.length - 1 : prev - 1
+      );
+    }
+  };
 
   return (
-    <section className={styles.section} ref={sectionRef} data-stagger-parent>
-      <div className="container">
-        
-        <div className={styles.sectionHeader}>
-          <h2 className={`display-m ${styles.heading}`} style={{textTransform: 'none'}}>
-            <span>[FILL: difference title line 1]</span>
-            <span>[FILL: difference title line 2]</span>
-            <span><span className={styles.shape} aria-hidden="true" />[FILL: difference title line 3]</span>
-          </h2>
-        </div>
-        
-        {!isMobile ? (
-          /* Desktop Grid */
-          <div className={styles.cardsGrid}>
-            {featureCards.map((card, i) => (
-              <div key={i} data-stagger-child className={styles.card}>
-                <div className={styles.inner}>
-                  <h3 className="display-xs">{card.title}</h3>
-                  <p className="label" style={{ marginTop: '1rem', textTransform: 'none', fontSize: '15px' }}>{card.detail}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          /* Mobile Swiper */
-          <div className={styles.mobileSwiper}>
-            <Swiper 
-              modules={[Pagination]}
-              spaceBetween={16} 
-              slidesPerView={1.08} 
-              pagination={{ clickable: true }}
-            >
-              {featureCards.map((card, i) => (
-                <SwiperSlide key={i}>
-                  <div className={`${styles.mobileCard} ${i === 0 ? styles.firstCard : ''}`}>
-                    <h3 className="display-xs">{card.title}</h3>
-                    <p className="text-m" style={{ marginTop: '1rem' }}>{card.detail}</p>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        )}
+    <section
+      className={styles.section}
+      data-component="cards"
+      aria-labelledby="feature-cards-title"
+    >
+      <div className={styles.headingWrap} data-reveal>
+        <h2 id="feature-cards-title" className={`${styles.heading} display-s`}>
+          <span>[FILL: difference title line 1]</span>
+          <span>[FILL: difference title line 2]</span>
+          <span className={styles.headingLineWithShape}>
+            <span className={styles.shape} aria-hidden="true" />
+            [FILL: difference title line 3]
+          </span>
+        </h2>
+      </div>
 
+      <div
+        className={styles.cards}
+        role="list"
+        aria-label="[FILL: feature cards aria label]"
+      >
+        {featureCards.map((card, index) => {
+          const isActive = activeIndex === index;
+
+          return (
+            <article
+              key={card.title}
+              className={`${styles.card} ${isActive ? styles.active : ""}`}
+              role="listitem"
+              data-reveal
+            >
+              <button
+                type="button"
+                className={styles.cardButton}
+                aria-pressed={isActive}
+                aria-label={`${card.title} — ${card.detail}`}
+                onMouseEnter={() => setActiveIndex(index)}
+                onFocus={() => setActiveIndex(index)}
+                onClick={() => setActiveIndex(index)}
+                onKeyDown={(event) => handleKeyDown(event, index)}
+              >
+                <div className={styles.cardIndex}>
+                  {String(index + 1).padStart(2, "0")}.
+                </div>
+
+                <div className={styles.cardContent}>
+                  <h3 className={`${styles.cardTitle} display-xs`}>
+                    {card.title}
+                  </h3>
+
+                  <p className={`${styles.cardSubtitle} text-s`}>
+                    {card.subtitle}
+                  </p>
+
+                  <div className={styles.cardDetailWrap}>
+                    <p className={`${styles.cardDetail} text-s`}>
+                      {card.detail}
+                    </p>
+                  </div>
+                </div>
+
+                <span className={styles.cardArrow} aria-hidden="true">
+                  →
+                </span>
+              </button>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
-};
+}

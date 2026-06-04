@@ -4,6 +4,11 @@
   padding: clamp(110px, 10vw, 190px) 0;
 }
 
+.inner {
+  width: min(92vw, 1080px);
+  margin-inline: auto;
+}
+
 .heading {
   text-align: center;
   margin-bottom: clamp(60px, 6vw, 110px);
@@ -12,26 +17,35 @@
 .logoGrid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(36px, 5vw, 86px) clamp(48px, 7vw, 120px);
+  gap: clamp(36px, 5vw, 78px) clamp(44px, 7vw, 110px);
   align-items: center;
   justify-items: center;
-  max-width: 980px;
-  margin-inline: auto;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2rem;
-  }
 }
 
 .logoItem {
   color: var(--white);
-  opacity: .9;
+  opacity: 0.92;
+  font-family: var(--font-primary);
   font-size: clamp(13px, 1vw, 18px);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.02em;
   text-align: center;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+
+.logoItem:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 900px) {
+  .logoGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .logoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
