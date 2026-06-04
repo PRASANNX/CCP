@@ -76,11 +76,12 @@
   border-radius: 0 999px 999px 0;
   background: var(--white);
   color: var(--black);
-  text-align: left;
+  text-align: center;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   isolation: isolate;
   transition:
@@ -149,6 +150,9 @@
   position: relative;
   z-index: 1;
   max-width: clamp(260px, 26vw, 520px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cardTitle {
@@ -229,7 +233,9 @@
 /* ============================= */
 
 .card:not(.active) .cardContent {
-  max-width: 70%;
+  max-width: 90%;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .card:not(.active) .cardTitle {
