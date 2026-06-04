@@ -73,14 +73,11 @@ export const TableNumbers = () => {
         <div className={styles.table}>
           {metrics.map((metric, i) => (
             <div key={i} className={styles.row} data-number-row>
-              <div className={styles.colMedia}>
-                <div className={styles.circle}></div>
-              </div>
               <div className={styles.colLabel}>
-                <h3 className="display-xs">{metric.label}</h3>
+                <h3 className="label" style={{textTransform: 'none', fontWeight: 600, fontSize: '16px'}}>{metric.label}</h3>
               </div>
               <div className={styles.colValue}>
-                <span className="display-m">
+                <span className={styles.massiveNumber}>
                   <span 
                     ref={(el) => { countersRef.current[i] = el; }} 
                     data-target={metric.value}
@@ -89,6 +86,11 @@ export const TableNumbers = () => {
                   </span>
                   {metric.suffix}
                 </span>
+              </div>
+              <div className={styles.colMedia}>
+                <div className={styles.photo}>
+                  <span>[FILL: TableNumbers row image {i+1}]</span>
+                </div>
               </div>
             </div>
           ))}

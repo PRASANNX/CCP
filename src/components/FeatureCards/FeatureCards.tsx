@@ -1,25 +1,21 @@
 import styles from './FeatureCards.module.scss';
 import { featureCards } from '../../data/featureCards';
 import { useReveal } from '../../hooks/useReveal';
-import { useMagnetic } from '../../hooks/useMagnetic';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const FeatureCard = ({ data, active }: { data: any; active?: boolean }) => {
-  const ref = useMagnetic<HTMLDivElement>({ strength: 0.05, rotate: 1 });
-  
+const FeatureCard = ({ data, index }: { data: any; index: number }) => {
+  // Use specific class based on index to create D-shapes
+  const shapeClass = index === 0 ? styles.shapeRight : styles.shapeLeft;
+
   return (
-    <div className={`${styles.card} ${active ? styles.active : ''}`} ref={ref}>
-      <div className={styles.default}>
+    <div className={`${styles.card} ${shapeClass}`}>
+      <div className={styles.inner}>
         <h3 className="display-xs">{data.title}</h3>
-        <p className="label" style={{ marginTop: '1rem' }}>{data.subtitle}</p>
-      </div>
-      <div className={styles.hover}>
-        <h3 className="text-xl">{data.hoverTitle}</h3>
-        <p className="text-m">{data.detail}</p>
+        <p className="label" style={{ marginTop: '1rem', textTransform: 'none', fontSize: '15px' }}>{data.detail}</p>
       </div>
     </div>
   );
@@ -34,9 +30,8 @@ export const FeatureCards = () => {
       <div className="container">
         
         <div className={styles.sectionHeader}>
-          <h2 className="display-s">
+          <h2 className="display-m" style={{textTransform: 'none'}}>
             [FILL: difference title line 1]<br/>
-            [FILL: difference title line 2]<br/>
             <span className={styles.shape} aria-hidden="true" />
             [FILL: difference title line 3]
           </h2>
@@ -45,9 +40,9 @@ export const FeatureCards = () => {
         {!isMobile ? (
           /* Desktop Grid */
           <div className={styles.desktopGrid}>
-            {featureCards.map((card, i) => (
+            {featureCards.slice(0, 3).map((card, i) => (
               <div key={i} data-stagger-child>
-                <FeatureCard data={card} active={i === 0} />
+                <FeatureCard data={card} index={i} />
               </div>
             ))}
           </div>
@@ -62,7 +57,7 @@ export const FeatureCards = () => {
             >
               {featureCards.map((card, i) => (
                 <SwiperSlide key={i}>
-                  <div className={`${styles.mobileCard} ${i === 0 ? styles.active : ''}`}>
+                  <div className={`${styles.mobileCard}`}>
                     <h3 className="display-xs">{card.title}</h3>
                     <p className="text-m" style={{ marginTop: '1rem' }}>{card.detail}</p>
                   </div>

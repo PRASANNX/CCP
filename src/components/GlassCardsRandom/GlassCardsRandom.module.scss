@@ -1,102 +1,76 @@
 .section {
   padding: var(--section-pad) 0;
   background-color: var(--black);
-  position: relative;
-  overflow: hidden;
   color: var(--white);
 }
 
-.stage {
-  position: relative;
-  min-height: 680px;
-}
-
-.card {
-  position: absolute;
+.banner {
   border-radius: 28px;
-  border: 1px solid var(--white-20);
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  padding: clamp(20px, 2vw, 32px);
-  min-height: 240px;
-  transition: border-color 0.35s ease, background 0.35s ease;
+  background-color: var(--grey-alt);
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  
+  /* Placeholder for banner image */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+  }
 }
 
-.magneticInner {
+.bannerContent {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  max-width: 800px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background-color: #3d2f2d; /* Dark reddish-brown to match reference */
+  border-radius: 24px;
+  padding: 32px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
-.card:hover {
-  border-color: rgba(255, 255, 255, 0.42);
-  background: rgba(255, 255, 255, 0.14);
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: auto;
 }
 
-.center {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: min(430px, 36vw);
-  min-height: 470px;
-  background: var(--light);
-  color: var(--black);
-  border: none;
-  z-index: 10;
+.num {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
-.topLeft {
-  left: 6%;
-  top: 6%;
-  transform: rotate(-5deg);
-  width: 260px;
-  z-index: 5;
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }
 
-.bottomRight {
-  right: 8%;
-  bottom: 12%;
-  transform: rotate(4deg);
-  width: 260px;
-  z-index: 5;
-}
-
-.bottom {
-  left: 18%;
-  bottom: 4%;
-  transform: rotate(3deg);
-  width: 260px;
-  z-index: 5;
+.cardBody {
+  margin-top: 40px;
 }
 
 .mobileSwiper {
   margin-top: 2rem;
-}
-
-.mobileCard {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 3rem 2rem;
-  color: var(--white);
-  text-align: center;
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.activeMobile {
-  background: var(--light);
-  color: var(--black);
-  border: none;
 }

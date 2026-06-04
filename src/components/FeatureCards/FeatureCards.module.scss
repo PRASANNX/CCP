@@ -1,73 +1,53 @@
 .section {
   padding: var(--section-pad) 0;
-  background-color: var(--light);
+  background-color: var(--white);
 }
 
 .sectionHeader {
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 
   .shape {
     display: inline-block;
-    width: 0.92em;
-    height: 0.34em;
+    width: 1.5em;
+    height: 0.5em;
+    background-color: var(--black);
     border-radius: 999px;
-    background: var(--black);
-    vertical-align: 0.08em;
-    margin-right: 0.08em;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin: 0 0.1em;
+    vertical-align: middle;
   }
 }
 
 .desktopGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0; /* Elements should touch or be very close */
 }
 
 .card {
   position: relative;
-  min-height: 430px;
-  overflow: hidden;
-  border-radius: 28px;
-  background: var(--white);
+  height: 550px;
+  background: transparent;
   color: var(--black);
-  padding: 28px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  transition: background 0.35s ease;
+  border: 1px solid var(--black);
+  margin-right: -1px; /* Overlap borders */
 }
 
-.hover {
-  position: absolute;
-  inset: 0;
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
-  pointer-events: none;
+.shapeRight {
+  border-radius: 0 500px 500px 0;
 }
 
-.default {
-  transition: opacity 0.35s ease, transform 0.35s ease;
+.shapeLeft {
+  border-radius: 500px 0 0 500px;
 }
 
-.card:hover,
-.card.active {
-  background: var(--green);
-  color: var(--black);
-
-  .hover {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .default {
-    opacity: 0;
-    transform: translateY(-12px);
-  }
+.inner {
+  max-width: 80%;
 }
 
 .mobileSwiper {
@@ -75,13 +55,10 @@
 }
 
 .mobileCard {
-  background-color: var(--white);
+  background-color: transparent;
+  border: 1px solid var(--black);
   border-radius: 16px;
   padding: 3rem 2rem;
   min-height: 350px;
-  
-  &.active {
-    background-color: var(--green);
-    color: var(--black);
-  }
+  color: var(--black);
 }

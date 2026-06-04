@@ -1,54 +1,63 @@
 .partners {
-  padding: 6rem 0;
+  padding: 8rem 0;
   background-color: var(--black);
   color: var(--white);
-  overflow: hidden;
-}
-
-.marquee {
-  width: 100vw;
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   overflow: hidden;
-  margin-bottom: 2rem;
-  display: flex;
-}
 
-.track {
-  display: flex;
-  white-space: nowrap;
-  width: max-content;
-}
-
-.trackReverse {
-  transform: translateX(-50%); /* Start offset so it can scrub right smoothly */
-}
-
-.logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem 3rem;
-  margin: 0 1rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 100px;
-  font-family: var(--font-secondary);
-  font-size: 1.5rem;
-  color: var(--grey);
-  
-  @media (max-width: 768px) {
-    padding: 1rem 2rem;
-    font-size: 1.25rem;
+  /* Gradient background */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 20, 25, 1) 0%, rgba(40, 150, 120, 0.25) 50%, rgba(20, 20, 25, 1) 100%);
+    z-index: 1;
+    pointer-events: none;
   }
 }
 
-.logoVisualClone {
-  display: block;
-  width: 70%;
-  height: 12px;
-  border-radius: 999px;
-  background: currentColor;
-  opacity: 0.18;
+.gridWrapper {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem;
+  
+  @media (max-width: 768px) {
+    height: 140px;
+  }
+}
+
+.logoText {
+  font-family: var(--font-secondary);
+  font-size: 1.8rem;
+  color: var(--white);
+  font-weight: 500;
+  opacity: 0.8;
+  
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+}
+
+.ctaContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
 }

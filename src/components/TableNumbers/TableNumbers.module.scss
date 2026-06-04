@@ -5,56 +5,77 @@
 
 .shape {
   display: inline-block;
-  width: 1em;
+  width: 0.92em;
   height: 0.34em;
   border-radius: 999px;
-  background: var(--blue, #0070f3);
+  background: var(--black);
   vertical-align: 0.08em;
   margin-right: 0.08em;
 }
 
 .table {
-  border-top: 2px solid var(--black);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .row {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 3rem;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: start;
+  gap: 2rem;
   padding: 3rem 0;
-  border-bottom: 1px solid var(--grey-alt);
+  border-top: 1px solid rgba(0,0,0,0.1);
   
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
     gap: 1.5rem;
     padding: 2.5rem 0;
   }
 }
 
-.colMedia {
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-
-.circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background-color: var(--grey-alt);
-}
-
 .colLabel {
   h3 {
-    max-width: 500px;
+    margin-top: 1rem;
   }
 }
 
 .colValue {
-  text-align: right;
+  text-align: center;
   
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     text-align: left;
+  }
+}
+
+.massiveNumber {
+  font-family: var(--font-primary);
+  font-size: clamp(80px, 12vw, 220px);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  color: var(--red, #ff3366);
+}
+
+.colMedia {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.photo {
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 4/3;
+  border-radius: 16px;
+  background-color: var(--grey-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--grey);
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 1rem;
+
+  @media (max-width: 900px) {
+    max-width: none;
+    aspect-ratio: 16/9;
   }
 }

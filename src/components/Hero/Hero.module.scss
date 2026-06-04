@@ -1,10 +1,29 @@
 .hero {
   min-height: 100vh;
-  background: var(--black);
+  background-color: var(--black);
   color: var(--white);
   display: flex;
   align-items: center;
   padding-top: var(--header-height);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Mesh gradient representing the red/blue hues from the reference */
+    background: radial-gradient(circle at 80% 20%, rgba(180, 40, 60, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(40, 80, 160, 0.4) 0%, transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  > .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
 }
 
 .top {
@@ -13,7 +32,8 @@
 
 .title {
   max-width: 760px;
-  text-transform: uppercase;
+  /* Removed text-transform: uppercase; */
+  text-transform: none;
 
   > span {
     display: block;
@@ -25,7 +45,7 @@
   width: 0.9em;
   height: 0.34em;
   border-radius: 999px;
-  background: var(--ccp-orange);
+  background: var(--white);
   vertical-align: 0.08em;
   margin-right: 0.08em;
 }
@@ -54,4 +74,22 @@
   @media (max-width: 768px) {
     justify-content: flex-start;
   }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
 }

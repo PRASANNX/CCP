@@ -30,8 +30,14 @@ export const Hero = ({ onOpenOffcanvas }: HeroProps) => {
             </p>
           </div>
           <div className={styles.actions} data-hero-actions ref={ctaRef}>
-            <button className="btn btn--outline" onClick={onOpenOffcanvas}>[FILL: HERO CTA 1]</button>
-            <button className="btn btn--outline" onClick={onOpenOffcanvas}>[FILL: HERO CTA 2]</button>
+            <button className="btn btn--outline" onClick={onOpenOffcanvas}>
+              [FILL: HERO CTA 1]
+              <span className={styles.icon}>&gt;</span>
+            </button>
+            <button className="btn btn--outline" onClick={onOpenOffcanvas}>
+              [FILL: HERO CTA 2]
+              <span className={styles.icon}>&gt;</span>
+            </button>
           </div>
         </div>
       </div>
