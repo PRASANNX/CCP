@@ -10,7 +10,7 @@ interface ReelCardProps {
 
 export const ReelCard: FC<ReelCardProps> = ({ reel, isMobile = false }) => {
   const [thumbnail, setThumbnail] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  
 
   useEffect(() => {
     const fetchThumbnail = async () => {
@@ -32,8 +32,6 @@ export const ReelCard: FC<ReelCardProps> = ({ reel, isMobile = false }) => {
         }
       } catch (error) {
         console.warn(`Failed to fetch thumbnail for reel ${reel.id}`);
-      } finally {
-        setIsLoading(false);
       }
     };
 
