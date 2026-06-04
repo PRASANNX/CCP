@@ -1,0 +1,210 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(80px, 9vw, 160px) 0;
+}
+
+.header {
+  width: min(92vw, 1100px);
+  margin: 0 auto clamp(42px, 6vw, 90px);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(44px, 6vw, 112px);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  font-weight: 500;
+}
+
+.description {
+  max-width: 620px;
+  margin: 22px auto 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(15px, 1.1vw, 20px);
+  line-height: 1.5;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: logoScroll 32s linear infinite;
+}
+
+.carousel:hover .track,
+.carousel:focus-within .track {
+  animation-play-state: paused;
+}
+
+.cloneGroup {
+  display: flex;
+  align-items: center;
+}
+
+.logoCard {
+  flex: 0 0 auto;
+  width: clamp(160px, 16vw, 260px);
+  height: clamp(96px, 9vw, 150px);
+  margin-inline: clamp(8px, 1vw, 18px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+  transition:
+    background 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.logoCard:hover,
+.logoCard:focus-visible {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.34);
+  transform: translateY(-4px);
+  outline: none;
+}
+
+.logoCard:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.logoCardInner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.logoImage {
+  max-width: 85%;
+  max-height: 85%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.92;
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.logoCard:hover .logoImage,
+.logoCard:focus-visible .logoImage {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.logoText {
+  max-width: 90%;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: clamp(18px, 1.5vw, 30px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+  color: var(--white);
+  opacity: 0.86;
+}
+
+.fadeLeft,
+.fadeRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: clamp(70px, 12vw, 220px);
+  pointer-events: none;
+}
+
+.fadeLeft {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    var(--black) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.fadeRight {
+  right: 0;
+  background: linear-gradient(
+    270deg,
+    var(--black) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+@keyframes logoScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 72px 0;
+  }
+
+  .track {
+    animation-duration: 24s;
+  }
+
+  .logoCard {
+    width: 150px;
+    height: 92px;
+    border-radius: 18px;
+  }
+
+  .fadeLeft,
+  .fadeRight {
+    width: 80px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    overflow-x: auto;
+    width: 100%;
+    padding-inline: 20px;
+  }
+
+  .cloneGroup {
+    display: none;
+  }
+
+  .logoCard {
+    transition: none !important;
+  }
+}

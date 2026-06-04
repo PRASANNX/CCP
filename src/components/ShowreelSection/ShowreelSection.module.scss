@@ -1,0 +1,324 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(100px, 10vw, 190px) 0;
+  isolation: isolate;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.94),
+      rgba(0, 0, 0, 0.42),
+      rgba(0, 0, 0, 0.9)
+    ),
+    radial-gradient(
+      circle at 35% 30%,
+      rgba(59, 221, 143, 0.2),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 78% 55%,
+      rgba(255, 62, 96, 0.22),
+      transparent 38%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.045) 0px,
+      rgba(255, 255, 255, 0.045) 12px,
+      rgba(0, 0, 0, 0.22) 12px,
+      rgba(0, 0, 0, 0.22) 28px,
+      rgba(255, 255, 255, 0.025) 28px,
+      rgba(255, 255, 255, 0.025) 46px,
+      rgba(0, 0, 0, 0.28) 46px,
+      rgba(0, 0, 0, 0.28) 66px
+    ),
+    var(--black);
+
+  background-blend-mode:
+    normal,
+    screen,
+    screen,
+    overlay,
+    normal;
+}
+
+.background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.32) 0.7px, transparent 0.7px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
+
+.inner {
+  width: min(92vw, 1560px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(36px, 6vw, 110px);
+  align-items: center;
+}
+
+.content {
+  max-width: 620px;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  max-width: 680px;
+  color: var(--white);
+}
+
+.description {
+  margin: clamp(24px, 2.6vw, 44px) 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  max-width: 580px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(30px, 3vw, 54px);
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 54px;
+  border-radius: 999px;
+  padding: 0 18px 0 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    background 0.35s var(--ease),
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.primaryButton {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--white);
+}
+
+.secondaryButton {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+}
+
+.primaryButton:hover,
+.primaryButton:focus-visible,
+.secondaryButton:hover,
+.secondaryButton:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.secondaryButton:hover,
+.secondaryButton:focus-visible {
+  background: var(--white);
+  color: var(--black);
+}
+
+.videoCard {
+  position: relative;
+  border-radius: 32px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.38);
+  transition:
+    transform 0.45s var(--ease),
+    border-color 0.45s var(--ease),
+    box-shadow 0.45s var(--ease);
+}
+
+.videoCard:hover,
+.videoCard:focus-within {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.36);
+  box-shadow: 0 44px 130px rgba(0, 0, 0, 0.5);
+}
+
+.videoShell {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    #161616;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.videoIframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* gradient overlay for readability */
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.04) 0%,
+      rgba(0, 0, 0, 0.12) 52%,
+      rgba(0, 0, 0, 0.64) 100%
+    );
+}
+
+.videoPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 15px;
+}
+
+.playButton {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  margin: auto;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  background: rgba(0, 0, 0, 0.46);
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  font-size: 24px;
+}
+
+.playButton:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 4px;
+}
+
+.controlButton {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 4;
+  min-height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(0, 0, 0, 0.44);
+  color: var(--white);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.controlButton:hover,
+.controlButton:focus-visible {
+  background: var(--white);
+  color: var(--black);
+  outline: none;
+}
+
+.videoMeta {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 20px;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  pointer-events: none;
+}
+
+/* hide meta behind controls on small screens */
+@media (max-width: 760px) {
+  .videoMeta {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .videoCard {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 82px 0;
+  }
+
+  .videoCard {
+    border-radius: 22px;
+  }
+
+  .videoShell {
+    aspect-ratio: 9 / 16;
+  }
+
+  .actions {
+    display: grid;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .videoCard,
+  .primaryButton,
+  .secondaryButton {
+    transition: none !important;
+  }
+}

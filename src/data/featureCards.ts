@@ -1,22 +1,33 @@
-export const featureCards = [
+export type FeatureCard = {
+  title: string;
+  subtitle: string;
+  detail: string;
+  instagramReel?: string;
+};
+
+export const featureCards: FeatureCard[] = [
   {
-    title: "Content-led growth",
-    subtitle: "Content with a business goal.",
-    detail: "Every creative is built to support visibility, trust, and action — not just aesthetics.",
+    title: "Hybrid model",
+    subtitle: "Local delivery, global capability.",
+    detail:
+      "We combine local teams and on-the-ground knowledge with international networks to deliver campaigns that scale.",
   },
   {
-    title: "Events and coverage",
-    subtitle: "Live moments, documented properly.",
-    detail: "Event shoots, highlight edits, and branded storytelling that make moments feel bigger.",
+    title: "Global reach. Local relevance.",
+    subtitle: "Zurich, Singapore, Madrid, Istanbul, Tallinn, London.",
+    detail:
+      "Local insight for a global reach. With hubs across Europe and Asia, we combine deep understanding of local ecosystems with the reach of an international network.",
   },
   {
-    title: "Corporate films",
-    subtitle: "Clear, premium brand communication.",
-    detail: "Films that explain, position, and elevate a brand in a clean and professional way.",
+    title: "Fintech-first focus",
+    subtitle: "Built for financial products.",
+    detail:
+      "We understand product-led growth, regulatory nuance and customer journeys specific to fintech and financial services.",
   },
   {
-    title: "Education-first thinking",
-    subtitle: "Built for learning environments.",
-    detail: "We understand campus culture, student communities, and institution-level communication.",
+    title: "Execution discipline",
+    subtitle: "Processes that deliver.",
+    detail:
+      "Operational rigor, clear timelines and measurable outcomes — we prioritise execution so ideas become impact.",
   },
 ];

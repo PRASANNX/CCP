@@ -7,7 +7,6 @@ export type Brand = {
 };
 
 export const brands: Brand[] = [
-  { id: "brand-1", name: "Astro Anjali Kashyap", logoSrc: "/images/brands/Astro Anjali Kashyap .png" },
   { id: "brand-2", name: "Bapu ki kutia", logoSrc: "/images/brands/Bapu ki kutia logo.jpg" },
   { id: "brand-3", name: "Charbhuja Na Garba", logoSrc: "/images/brands/Charbhuja Na Garba logo.jpg" },
   { id: "brand-4", name: "Events By B3 Food park", logoSrc: "/images/brands/Events By B3 Food park.jpg" },

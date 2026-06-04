@@ -7,6 +7,7 @@ import { BrandsWorkedWith } from "./components/BrandsWorkedWith/BrandsWorkedWith
 import { FeatureCards } from "./components/FeatureCards/FeatureCards";
 import { KpiProof } from "./components/KpiProof/KpiProof";
 import { Cases } from "./components/Cases/Cases";
+import { ShowreelSection } from "./components/ShowreelSection/ShowreelSection";
 import { GlassCards } from "./components/GlassCards/GlassCards";
 import { Composition } from "./components/Composition/Composition";
 import { FounderProfile } from "./components/FounderProfile/FounderProfile";
@@ -15,6 +16,7 @@ import { Footer } from "./components/Footer/Footer";
 import { MobileMenu } from "./components/MobileMenu/MobileMenu";
 import { Offcanvas } from "./components/Offcanvas/Offcanvas";
 import { Submenus } from "./components/Submenus/Submenus";
+import { LogoCarousel } from "./components/LogoCarousel/LogoCarousel";
 import { useLenis } from "./hooks/useLenis";
 import { useScrollAnimations } from "./hooks/useScrollAnimations";
 import './styles/globals.scss';
@@ -59,7 +61,12 @@ function App() {
 
       <main id="top">
         <Hero onOpenOffcanvas={openOffcanvas} />
+        <LogoCarousel />
         <FounderProfile founder={founderProfile} />
+        <ShowreelSection
+          videoSrc="https://www.youtube.com/watch?v=ip7viNZ7YRU"
+          posterSrc="/assets/showreel/poster.jpg"
+        />
         <GlassCardsRandom />
         <BrandsWorkedWith />
         <FeatureCards />

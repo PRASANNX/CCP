@@ -4,7 +4,7 @@ import styles from "./FeatureCards.module.scss";
 import { featureCards } from "../../data/featureCards";
 
 export function FeatureCards() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
 
   const handleKeyDown = (
     event: KeyboardEvent<HTMLElement>,
@@ -13,6 +13,10 @@ export function FeatureCards() {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       setActiveIndex(index);
+      const card = featureCards[index];
+      if (card.instagramReel) {
+        window.open(card.instagramReel, "_blank");
+      }
     }
 
     if (event.key === "ArrowRight") {
@@ -34,7 +38,7 @@ export function FeatureCards() {
     <section
       className={styles.section}
       data-component="cards"
-      aria-labelledby="feature-cards-title"
+      aria-labelledby="feature-title"
     >
       <div className={styles.headingWrap} data-reveal>
         <h2 id="feature-title" className={`${styles.heading} display-m`} data-reveal>
@@ -69,7 +73,12 @@ export function FeatureCards() {
                 aria-label={`${card.title} — ${card.detail}`}
                 onMouseEnter={() => setActiveIndex(index)}
                 onFocus={() => setActiveIndex(index)}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => {
+                  setActiveIndex(index);
+                  if (card.instagramReel) {
+                    window.open(card.instagramReel, "_blank");
+                  }
+                }}
                 onKeyDown={(event) => handleKeyDown(event, index)}
               >
                 <div className={styles.cardIndex}>
