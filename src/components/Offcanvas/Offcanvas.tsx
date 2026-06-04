@@ -1,45 +1,49 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './Offcanvas.module.scss';
 import { useOffcanvasFocusTrap } from '../../hooks/useOffcanvasFocusTrap';
 
 export const Offcanvas = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   
-  useEffect(() => {
-    const handleTrigger = (e: MouseEvent) => {
-      if ((e.target as HTMLElement).closest('[data-offcanvas]')) {
-        e.preventDefault();
-        setIsOpen(true);
-      }
-    };
-    document.addEventListener('click', handleTrigger);
-    return () => document.removeEventListener('click', handleTrigger);
-  }, []);
+  useOffcanvasFocusTrap(dialogRef, isOpen, () => setIsOpen(false));
 
-  useOffcanvasFocusTrap(panelRef, isOpen, () => setIsOpen(false));
+  // Expose a global method to open the offcanvas from anywhere (like the Hero CTA)
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener('open-offcanvas', handleOpen);
+    return () => window.removeEventListener('open-offcanvas', handleOpen);
+  }, []);
 
   return (
     <>
       <div 
-        className={`${styles.backdrop} ${isOpen ? styles.visible : ''}`} 
+        className={`${styles.backdrop} ${isOpen ? styles.backdropActive : ''}`} 
         onClick={() => setIsOpen(false)}
+        aria-hidden="true"
       />
+      
       <div 
-        ref={panelRef}
+        ref={dialogRef}
+        className={`${styles.panel} ${isOpen ? styles.panelActive : ''}`}
         role="dialog"
         aria-modal="true"
-        className={`${styles.panel} ${isOpen ? styles.open : ''}`}
         aria-hidden={!isOpen}
       >
-        <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>Close</button>
-        <h2 className="display-xs">[FILL: offcanvas title]</h2>
-        <form className={styles.form}>
-          <input type="text" placeholder="[FILL: form name label]" />
-          <input type="email" placeholder="[FILL: form email label]" />
-          <textarea placeholder="[FILL: form message label]" rows={4}></textarea>
-          <button className="btn" type="button">[FILL: form submit label]</button>
-        </form>
+        <div className={styles.header}>
+          <h3 className="display-xxs">[FILL: offcanvas title]</h3>
+          <button 
+            className={styles.closeBtn} 
+            onClick={() => setIsOpen(false)}
+            aria-label="Close panel"
+          >
+            CLOSE
+          </button>
+        </div>
+        
+        <div className={styles.body}>
+          <p className="text-m">[FILL: offcanvas content/form]</p>
+        </div>
       </div>
     </>
   );

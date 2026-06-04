@@ -9,38 +9,47 @@ export const useOffcanvasFocusTrap = (
     if (!isOpen || !ref.current) return;
 
     const el = ref.current;
-    
-    // Lock body scroll
-    document.body.style.overflow = 'hidden';
 
-    // Focus first focusable
-    const focusable = el.querySelectorAll<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    if (focusable.length) focusable[0].focus();
+    // Lock body scroll
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+
+    // Focus first focusable element
+    const focusableSelector =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const focusable = el.querySelectorAll<HTMLElement>(focusableSelector);
+    const firstFocusable = focusable[0];
+    const lastFocusable = focusable[focusable.length - 1];
+    if (firstFocusable) firstFocusable.focus();
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
+        return;
       }
-      
+
       if (e.key === 'Tab') {
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
+        if (e.shiftKey && document.activeElement === firstFocusable) {
           e.preventDefault();
-          last?.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
+          lastFocusable?.focus();
+        } else if (!e.shiftKey && document.activeElement === lastFocusable) {
           e.preventDefault();
-          first?.focus();
+          firstFocusable?.focus();
         }
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
+
     return () => {
-      document.body.style.overflow = '';
       document.removeEventListener('keydown', handleKeyDown);
+      // Restore body scroll
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen, ref, onClose]);
 };

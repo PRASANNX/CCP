@@ -1,34 +1,60 @@
-import { useEffect } from 'react';
+import { useRef } from 'react';
 import styles from './MobileMenu.module.scss';
 import { navigation } from '../../data/navigation';
+import { useOffcanvasFocusTrap } from '../../hooks/useOffcanvasFocusTrap';
 
-export const MobileMenu = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
-  useEffect(() => {
-    if (isOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) onClose();
-    }
-    document.addEventListener('keydown', handleKey);
-    
-    return () => {
-      document.body.style.overflow = '';
-      document.removeEventListener('keydown', handleKey);
-    };
-  }, [isOpen, onClose]);
+interface MobileMenuProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+  const menuRef = useRef<HTMLDivElement>(null);
+  
+  useOffcanvasFocusTrap(menuRef, isOpen, onClose);
 
   return (
-    <div className={`${styles.container} ${isOpen ? styles.open : ''}`} aria-hidden={!isOpen}>
-      <div className={styles.inner}>
-        <button className={styles.closeBtn} onClick={onClose}>Close</button>
-        <nav className={styles.nav}>
-          {navigation.map(nav => (
-            <a key={nav.rel} href={nav.href} onClick={onClose} className="display-xs">
-              {nav.label}
-            </a>
-          ))}
+    <div
+      ref={menuRef}
+      className={`${styles.container} ${isOpen ? styles.isOpen : ''} mobileOnly`}
+      aria-hidden={!isOpen}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className={styles.header}>
+        <div className={styles.brand}>[FILL: org name]</div>
+        <button className={styles.closeBtn} onClick={onClose} aria-label="Close menu">
+          CLOSE
+        </button>
+      </div>
+      
+      <div className={styles.body}>
+        <nav>
+          <ul>
+            {navigation.map((item) => (
+              <li key={item.label}>
+                <a href={item.href} className="display-xxs" onClick={onClose}>
+                  {item.label}
+                </a>
+                {item.children && (
+                  <ul className={styles.subLinks}>
+                    {item.children.map((child) => (
+                      <li key={child.label}>
+                        <a href={child.href} onClick={onClose}>{child.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
         </nav>
+      </div>
+      
+      <div className={styles.footer}>
+        <a href="#" className="btn btn--dark" style={{ width: '100%' }}>
+          CONTACT
+        </a>
       </div>
     </div>
   );

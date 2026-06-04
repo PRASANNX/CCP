@@ -1,72 +1,49 @@
-.container {
-  padding: 8rem 0;
-  background-color: var(--black);
-  position: relative;
-  overflow: hidden;
-}
-.backgrounds {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 1;
-}
-.bgPanel {
-  position: absolute;
-  inset: 0;
-  background-color: #222;
-  opacity: 0;
-  transition: opacity 0.8s ease, transform 1s ease;
-  transform: scale(1.05);
-  
-  &:nth-child(even) {
-    background-color: #1a1a1a;
-  }
-  
-  &.active {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.desktopGrid {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
-  
-  @media (max-width: 768px) {
-    display: none;
-  }
-}
-.mobileSwiper {
-  display: none;
-  position: relative;
-  z-index: 2;
-  margin-top: 4rem;
-  
-  @media (max-width: 768px) {
-    display: block;
-  }
-}
-.card {
-  background: var(--white-20);
-  backdrop-filter: blur(10px);
-  padding: 4rem 2rem;
-  border-radius: 16px;
+.section {
+  padding: var(--section-pad) 0;
+  transition: background-color 0.6s var(--ease);
   color: var(--white);
-  cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: background 0.3s ease;
+}
+
+.desktopGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  display: block;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--card-radius);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+  text-decoration: none;
   
-  &:hover, &:focus {
-    background: var(--white-50);
-    outline: none;
+  &:hover, &:focus-visible {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 }
-.category {
-  font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  color: var(--grey-alt);
+
+.cardInner {
+  padding: 3rem 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileSwiper {
+  margin-top: 2rem;
+}
+
+.mobileCard {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  color: var(--white);
 }

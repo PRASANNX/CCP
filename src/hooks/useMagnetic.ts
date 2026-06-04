@@ -6,16 +6,20 @@ interface MagneticConfig {
   rotate?: number;
 }
 
-export const useMagnetic = <T extends HTMLElement>(config: MagneticConfig = { strength: 0.08, rotate: 2 }) => {
+export const useMagnetic = <T extends HTMLElement>(
+  config: MagneticConfig = {}
+) => {
   const ref = useRef<T>(null);
 
   useEffect(() => {
-    // Disabled on touch/mobile
-    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const isTouch = window.matchMedia(
+      '(hover: none) and (pointer: coarse)'
+    ).matches;
     if (isTouch || !ref.current) return;
 
     const el = ref.current;
     const strength = config.strength ?? 0.08;
+    const rotateAmount = config.rotate ?? 2;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();
@@ -25,10 +29,10 @@ export const useMagnetic = <T extends HTMLElement>(config: MagneticConfig = { st
       gsap.to(el, {
         x: x * strength,
         y: y * strength,
-        rotate: (x / rect.width) * (config.rotate ?? 2),
+        rotate: (x / rect.width) * rotateAmount,
         duration: 0.6,
         ease: 'power3.out',
-        overwrite: 'auto'
+        overwrite: 'auto',
       });
     };
 
@@ -39,7 +43,7 @@ export const useMagnetic = <T extends HTMLElement>(config: MagneticConfig = { st
         rotate: 0,
         duration: 0.6,
         ease: 'power3.out',
-        overwrite: 'auto'
+        overwrite: 'auto',
       });
     };
 
@@ -50,7 +54,7 @@ export const useMagnetic = <T extends HTMLElement>(config: MagneticConfig = { st
       el.removeEventListener('mousemove', handleMouseMove);
       el.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [config]);
+  }, []);
 
   return ref;
 };

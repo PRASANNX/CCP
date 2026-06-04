@@ -1,26 +1,37 @@
-.container {
-  padding: 8rem 0;
-  background: var(--black);
-  color: var(--white);
+.section {
+  padding: var(--section-pad) 0;
+  background-color: var(--light);
 }
+
 .desktopGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
-  
-  @media (max-width: 768px) { display: none; }
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
 }
-.mobileSwiper {
-  display: none;
-  margin-top: 3rem;
-  @media (max-width: 768px) { display: block; }
-}
+
 .card {
-  background: var(--white-20);
-  backdrop-filter: blur(15px);
-  padding: 3rem;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--card-radius);
+  padding: 3rem 2rem;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.mobileSwiper {
+  margin-top: 2rem;
+}
+
+.mobileCard {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--white);
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.1);
-  min-height: 250px;
+  padding: 3rem 2rem;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
 }

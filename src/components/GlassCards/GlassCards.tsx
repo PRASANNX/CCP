@@ -1,35 +1,51 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 import styles from './GlassCards.module.scss';
 import { glassCards } from '../../data/glassCards';
+import { useReveal } from '../../hooks/useReveal';
 import { useMagnetic } from '../../hooks/useMagnetic';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
-const Card = ({ data }: { data: any }) => {
-  const ref = useMagnetic<HTMLDivElement>();
+const GlassCard = ({ data }: { data: any }) => {
+  const ref = useMagnetic<HTMLDivElement>({ strength: 0.05, rotate: 1 });
   return (
     <div className={styles.card} ref={ref}>
-      <h4>{data.title}</h4>
-      <p>{data.desc}</p>
+      <h3 className="display-xs">{data.title}</h3>
+      <p className="text-m" style={{ marginTop: '2rem' }}>{data.desc}</p>
     </div>
   );
 };
 
 export const GlassCards = () => {
+  const sectionRef = useReveal<HTMLElement>();
+
   return (
-    <div className={styles.container}>
+    <section className={styles.section} ref={sectionRef} data-stagger-parent>
       <div className="container">
-        <h2 data-reveal className="display-m">Audience Paths</h2>
-        <div className={styles.desktopGrid}>
-          {glassCards.map((c: any, i: number) => <Card key={i} data={c} />)}
+        
+        {/* Desktop Grid */}
+        <div className={`desktopOnly ${styles.desktopGrid}`} aria-hidden="false">
+          {glassCards.map((card, i) => (
+            <div key={i} data-stagger-child>
+              <GlassCard data={card} />
+            </div>
+          ))}
         </div>
-        <div className={styles.mobileSwiper}>
-          <Swiper spaceBetween={20} slidesPerView={1.2}>
-            {glassCards.map((c: any, i: number) => (
-              <SwiperSlide key={i}><Card data={c} /></SwiperSlide>
+
+        {/* Mobile Swiper */}
+        <div className={`mobileOnly ${styles.mobileSwiper}`} aria-hidden="true">
+          <Swiper spaceBetween={16} slidesPerView={1.1}>
+            {glassCards.map((card, i) => (
+              <SwiperSlide key={i}>
+                <div className={styles.mobileCard}>
+                  <h3 className="display-xs">{card.title}</h3>
+                  <p className="text-m" style={{ marginTop: '1rem' }}>{card.desc}</p>
+                </div>
+              </SwiperSlide>
             ))}
           </Swiper>
         </div>
+
       </div>
-    </div>
+    </section>
   );
 };

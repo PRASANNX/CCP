@@ -1,42 +1,75 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import styles from './Partners.module.scss';
-import { partners } from '../../data/partners';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import styles from './Partners.module.scss';
+import { partnersRow1, partnersRow2 } from '../../data/partners';
+import { useReveal } from '../../hooks/useReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Partners = () => {
-  const trackRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useReveal<HTMLElement>();
+  const track1Ref = useRef<HTMLDivElement>(null);
+  const track2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!trackRef.current) return;
+    if (!track1Ref.current || !track2Ref.current) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
-      gsap.to(trackRef.current, {
+      // Row 1 goes left
+      gsap.to(track1Ref.current, {
         xPercent: -50,
         ease: 'none',
         scrollTrigger: {
-          trigger: trackRef.current,
+          trigger: sectionRef.current,
           start: 'top bottom',
           end: 'bottom top',
           scrub: 1,
-        }
+        },
+      });
+
+      // Row 2 goes right
+      gsap.to(track2Ref.current, {
+        xPercent: 50,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
       });
     });
+
     return () => ctx.revert();
   }, []);
 
   return (
-    <div className={styles.container}>
+    <section className={styles.partners} ref={sectionRef}>
       <h2 className="sr-only">Our Partners</h2>
+      
       <div className={styles.marquee}>
-        <div className={styles.track} ref={trackRef}>
-          {/* Double up for infinite effect */}
-          {[...partners, ...partners].map((p: any, i: number) => (
-            <div key={i} className={styles.logo}>{p.name}</div>
+        <div className={styles.track} ref={track1Ref}>
+          {/* Double up for infinite seamless scroll */}
+          {[...partnersRow1, ...partnersRow1].map((p, i) => (
+            <div key={`r1-${i}`} className={styles.logo}>
+              {p.name}
+            </div>
           ))}
         </div>
       </div>
-    </div>
+
+      <div className={styles.marquee}>
+        <div className={`${styles.track} ${styles.trackReverse}`} ref={track2Ref}>
+          {[...partnersRow2, ...partnersRow2].map((p, i) => (
+            <div key={`r2-${i}`} className={styles.logo}>
+              {p.name}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };

@@ -1,55 +1,72 @@
-.container {
-  padding: 6rem 0;
-  background: var(--light);
+.section {
+  padding: var(--section-pad) 0;
+  background-color: var(--light);
 }
+
 .desktopGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  
-  @media (max-width: 1024px) {
-    display: none;
-  }
+  gap: 1.5rem;
 }
-.mobileSwiper {
-  display: none;
-  @media (max-width: 1024px) {
-    display: block;
-  }
-}
+
 .card {
+  background-color: var(--white);
+  border-radius: var(--card-radius);
+  height: 480px;
   position: relative;
-  background: var(--white);
-  height: 400px;
-  border-radius: 12px;
-  padding: 2rem;
   overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  
-  &:hover .hoverContent {
+  will-change: transform;
+}
+
+.defaultState,
+.hoverState {
+  position: absolute;
+  inset: 0;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.defaultState {
+  justify-content: space-between;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hoverState {
+  justify-content: center;
+  background-color: var(--black);
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(20px);
+  gap: 1.5rem;
+}
+
+.card:hover,
+.card.active {
+  .defaultState {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  .hoverState {
     opacity: 1;
     transform: translateY(0);
   }
-  &:hover .defaultTitle {
-    opacity: 0;
+}
+
+.mobileSwiper {
+  margin-top: 2rem;
+}
+
+.mobileCard {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  min-height: 350px;
+  
+  &.active {
+    background-color: var(--black);
+    color: var(--white);
   }
-}
-.defaultTitle {
-  font-size: 1.5rem;
-  font-weight: bold;
-  transition: opacity 0.3s ease;
-}
-.hoverContent {
-  position: absolute;
-  inset: 0;
-  background: var(--black);
-  color: var(--white);
-  padding: 2rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s var(--ease);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }

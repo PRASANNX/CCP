@@ -10,12 +10,15 @@ body {
   overflow-x: hidden;
 }
 
-#top {
-  padding-top: var(--header-height);
+::selection {
+  background-color: var(--black);
+  color: var(--white);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
