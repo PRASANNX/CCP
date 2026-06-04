@@ -5,11 +5,15 @@ export const Footer = () => {
   const footerRef = useReveal<HTMLDivElement>();
 
   return (
-    <footer className={styles.footer} ref={footerRef} data-stagger-parent>
+    <footer className={styles.footer} ref={footerRef}>
       <div className="container">
-        <h2 className="display-l" data-stagger-child>[FILL: CTA title]</h2>
+        <div className={styles.top} data-reveal>
+          <h2 className="display-l">[FILL: CTA title]</h2>
+        </div>
+
+        <hr />
         
-        <div className={styles.inner} data-stagger-child>
+        <div className={styles.middle} data-reveal>
           <div className={styles.newsletter}>
             <h3 className="display-xs">[FILL: Newsletter Title]</h3>
             <p className="text-m">[FILL: Newsletter text]</p>
@@ -21,14 +25,19 @@ export const Footer = () => {
             <div className={styles.links}>
               <a href="#">[FILL: Link 1]</a>
               <a href="#">[FILL: Link 2]</a>
+              <a href="#">[FILL: Link 3]</a>
+              <a href="#">[FILL: Link 4]</a>
             </div>
           </div>
         </div>
 
-        <div className={styles.bottom} data-stagger-child>
+        <hr />
+
+        <div className={styles.bottom} data-reveal>
           <div className={styles.social}>
-            <a href="#">[FILL: Social 1]</a>
-            <a href="#">[FILL: Social 2]</a>
+            <a href="#" aria-label="Social link 1">[FILL: Social 1]</a>
+            <a href="#" aria-label="Social link 2">[FILL: Social 2]</a>
+            <a href="#" aria-label="Social link 3">[FILL: Social 3]</a>
           </div>
           <div className={styles.legal}>
             <a href="#">[FILL: Legal 1]</a>

@@ -3,24 +3,30 @@ import { useReveal } from '../../hooks/useReveal';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/pagination';
 
-const CenterCard = ({ title }: { title: string }) => {
+const CenterCard = ({ title, className }: { title: string, className?: string }) => {
   const ref = useMagnetic<HTMLDivElement>({ strength: 0.1 });
   return (
-    <div className={`${styles.card} ${styles.active}`} ref={ref}>
-      <h3 className="display-xxs">{title}</h3>
-    </div>
+    <article className={`${styles.card} ${styles.center} ${className || ''}`}>
+      <div ref={ref} className={styles.magneticInner}>
+        <h3 className="display-xxs">{title}</h3>
+      </div>
+    </article>
   );
 };
 
-const ProcessCard = ({ number, title }: { number: string; title: string }) => {
+const ProcessCard = ({ number, title, className }: { number: string; title: string, className?: string }) => {
   const ref = useMagnetic<HTMLDivElement>({ strength: 0.1 });
   return (
-    <div className={styles.card} ref={ref}>
-      <p className="label" style={{ marginBottom: '1rem', color: 'var(--grey)' }}>{number}</p>
-      <h3 className="display-xxs">{title}</h3>
-    </div>
+    <article className={`${styles.card} ${className || ''}`}>
+      <div ref={ref} className={styles.magneticInner}>
+        <p className="label" style={{ marginBottom: '1rem', color: 'var(--grey)' }}>{number}</p>
+        <h3 className="display-xxs">{title}</h3>
+      </div>
+    </article>
   );
 };
 
@@ -34,27 +40,32 @@ export const GlassCardsRandom = () => {
         
         {!isMobile ? (
           /* Desktop Grid */
-          <div className={styles.desktopGrid}>
-            <div className={styles.centerWrap} data-stagger-child>
+          <div className={styles.stage}>
+            <div data-stagger-child>
               <CenterCard title="[FILL: methodology title]" />
             </div>
-            <div className={`${styles.floatCard} ${styles.pos1}`} data-stagger-child>
-              <ProcessCard number="[FILL: step number 1]" title="[FILL: step 1 title]" />
+            <div data-stagger-child>
+              <ProcessCard number="[FILL: step number 1]" title="[FILL: step 1 title]" className={styles.topLeft} />
             </div>
-            <div className={`${styles.floatCard} ${styles.pos2}`} data-stagger-child>
-              <ProcessCard number="[FILL: step number 2]" title="[FILL: step 2 title]" />
+            <div data-stagger-child>
+              <ProcessCard number="[FILL: step number 2]" title="[FILL: step 2 title]" className={styles.bottomRight} />
             </div>
-            <div className={`${styles.floatCard} ${styles.pos3}`} data-stagger-child>
-              <ProcessCard number="[FILL: step number 3]" title="[FILL: step 3 title]" />
+            <div data-stagger-child>
+              <ProcessCard number="[FILL: step number 3]" title="[FILL: step 3 title]" className={styles.bottom} />
             </div>
           </div>
         ) : (
           /* Mobile Swiper */
           <div className={styles.mobileSwiper}>
-            <Swiper spaceBetween={16} slidesPerView={1.2} centeredSlides={true}>
+            <Swiper 
+              modules={[Pagination]} 
+              spaceBetween={16} 
+              slidesPerView={1.08} 
+              pagination={{ clickable: true }}
+            >
               <SwiperSlide>
                 <div className={`${styles.mobileCard} ${styles.activeMobile}`}>
-                  <h3 className="text-xl">[FILL: methodology title]</h3>
+                  <h3 className="text-xl" style={{color: 'var(--black)'}}>[FILL: methodology title]</h3>
                 </div>
               </SwiperSlide>
               <SwiperSlide>

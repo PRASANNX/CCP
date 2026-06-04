@@ -8,12 +8,12 @@
 
   .shape {
     display: inline-block;
-    width: 1.5em;
-    height: 0.7em;
-    background-color: var(--black);
-    border-radius: 100px;
-    margin: 0 0.2em;
-    vertical-align: middle;
+    width: 0.92em;
+    height: 0.34em;
+    border-radius: 999px;
+    background: var(--black);
+    vertical-align: 0.08em;
+    margin-right: 0.08em;
   }
 }
 
@@ -24,48 +24,49 @@
 }
 
 .card {
-  background-color: var(--white);
-  border-radius: var(--card-radius);
-  height: 480px;
   position: relative;
+  min-height: 430px;
   overflow: hidden;
-  will-change: transform;
-}
-
-.defaultState,
-.hoverState {
-  position: absolute;
-  inset: 0;
-  padding: 3rem 2rem;
+  border-radius: 28px;
+  background: var(--white);
+  color: var(--black);
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  justify-content: flex-end;
+  transition: background 0.35s ease;
 }
 
-.defaultState {
+.hover {
+  position: absolute;
+  inset: 0;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
 }
 
-.hoverState {
-  justify-content: center;
-  background-color: var(--black);
-  color: var(--white);
-  opacity: 0;
-  transform: translateY(20px);
-  gap: 1.5rem;
+.default {
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .card:hover,
 .card.active {
-  .defaultState {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  .hoverState {
+  background: var(--green);
+  color: var(--black);
+
+  .hover {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .default {
+    opacity: 0;
+    transform: translateY(-12px);
   }
 }
 
@@ -80,7 +81,7 @@
   min-height: 350px;
   
   &.active {
-    background-color: var(--black);
-    color: var(--white);
+    background-color: var(--green);
+    color: var(--black);
   }
 }

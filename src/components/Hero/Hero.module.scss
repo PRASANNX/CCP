@@ -1,17 +1,22 @@
 .hero {
   min-height: 100vh;
-  background-color: var(--black);
+  background: var(--black);
   color: var(--white);
-  padding: calc(var(--header-height) + 4rem) 0 4rem;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  padding-top: var(--header-height);
 }
 
 .top {
   margin-bottom: 6rem;
-  
-  h1 {
-    text-transform: uppercase;
+}
+
+.title {
+  max-width: 760px;
+  text-transform: uppercase;
+
+  > span {
+    display: block;
   }
 }
 

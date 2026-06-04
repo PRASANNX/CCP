@@ -7,6 +7,17 @@ import { useReveal } from '../../hooks/useReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
+function parseMetric(value: string) {
+  const match = value.match(/^\$?(\d+(?:\.\d+)?)(.*)$/);
+  if (!match) return null;
+
+  return {
+    number: Number(match[1]),
+    suffix: match[2] ?? "",
+    prefix: value.startsWith("$") ? "$" : "",
+  };
+}
+
 export const TableNumbers = () => {
   const sectionRef = useReveal<HTMLElement>();
   const countersRef = useRef<(HTMLSpanElement | null)[]>([]);
@@ -19,27 +30,27 @@ export const TableNumbers = () => {
       countersRef.current.forEach((counter) => {
         if (!counter) return;
         
-        // Strip out non-numeric characters for the target value
         const targetText = counter.getAttribute('data-target') || '0';
-        const targetNum = parseFloat(targetText.replace(/[^0-9.]/g, ''));
+        const parsed = parseMetric(targetText);
         
-        if (isNaN(targetNum)) return;
+        if (!parsed) return;
 
         gsap.fromTo(
           counter,
           { innerHTML: 0 },
           {
-            innerHTML: targetNum,
+            innerHTML: parsed.number,
             duration: 2,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: counter,
               start: 'top 85%',
+              once: true
             },
-            snap: { innerHTML: 1 }, // round to integers
+            snap: { innerHTML: 1 },
             onUpdate: function () {
               const val = Math.round(Number(this.targets()[0].innerHTML));
-              counter.innerHTML = new Intl.NumberFormat('en-US').format(val);
+              counter.innerHTML = `${parsed.prefix}${new Intl.NumberFormat('en-US').format(val)}${parsed.suffix}`;
             }
           }
         );
@@ -50,9 +61,9 @@ export const TableNumbers = () => {
   }, []);
 
   return (
-    <section className={styles.section} ref={sectionRef} data-stagger-parent>
+    <section className={styles.section} ref={sectionRef}>
       <div className="container">
-        <h2 className="display-l" style={{ marginBottom: '4rem' }} data-stagger-child>
+        <h2 className="display-l" style={{ marginBottom: '4rem' }} data-reveal>
           [FILL: proof title line 1]<br/>
           <span className={styles.shape} aria-hidden="true" />
           [FILL: proof title line 2]<br/>
@@ -61,7 +72,7 @@ export const TableNumbers = () => {
 
         <div className={styles.table}>
           {metrics.map((metric, i) => (
-            <div key={i} className={styles.row} data-stagger-child>
+            <div key={i} className={styles.row} data-number-row>
               <div className={styles.colMedia}>
                 <div className={styles.circle}></div>
               </div>

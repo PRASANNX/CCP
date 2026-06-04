@@ -15,6 +15,28 @@ body {
   color: var(--white);
 }
 
+.shape {
+  display: inline-block;
+  width: 0.92em;
+  height: 0.34em;
+  border-radius: 999px;
+  background: var(--green);
+  vertical-align: 0.08em;
+  margin-right: 0.08em;
+}
+
+.shape--orange {
+  background: var(--ccp-orange);
+}
+
+.shape--blue {
+  background: var(--blue);
+}
+
+.shape--red {
+  background: var(--red);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

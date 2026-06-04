@@ -5,17 +5,7 @@
 
 .shape {
   display: inline-block;
-  width: 1.5em;
-  height: 0.7em;
-  background-color: var(--black);
-  border-radius: 100px;
-  margin: 0 0.2em;
-  vertical-align: middle;
-}
-
-.shape {
-  display: inline-block;
-  width: 1em;
+  width: 0.92em;
   height: 0.34em;
   border-radius: 999px;
   background: var(--red, #e00);
@@ -34,12 +24,21 @@
   border: 1px solid rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: var(--card-radius);
+  border-radius: 28px;
   padding: 3rem 2rem;
   height: 400px;
   display: flex;
   flex-direction: column;
-  will-change: transform;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.magneticInner {
+  width: 100%;
 }
 
 .mobileSwiper {

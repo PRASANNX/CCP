@@ -12,7 +12,7 @@ export const Hero = ({ onOpenOffcanvas }: HeroProps) => {
     <section className={styles.hero}>
       <div className="container">
         <div className={styles.top}>
-          <h1 className="display-xl" data-hero-title>
+          <h1 className={`${styles.title} display-m`} data-hero-title>
             <span>[FILL: PROJECT TITLE LINE 1]</span>
             <span>[FILL: PROJECT TITLE LINE 2]</span>
             <span>
@@ -25,11 +25,11 @@ export const Hero = ({ onOpenOffcanvas }: HeroProps) => {
 
         <div className={styles.bottom}>
           <div className={styles.copyWrapper}>
-            <p className="hero-copy-reveal text-xl">
+            <p className="text-xl" data-hero-copy>
               [FILL: abstract]
             </p>
           </div>
-          <div className={`${styles.actions} hero-actions-reveal`} ref={ctaRef}>
+          <div className={styles.actions} data-hero-actions ref={ctaRef}>
             <button className="btn btn--outline" onClick={onOpenOffcanvas}>[FILL: HERO CTA 1]</button>
             <button className="btn btn--outline" onClick={onOpenOffcanvas}>[FILL: HERO CTA 2]</button>
           </div>

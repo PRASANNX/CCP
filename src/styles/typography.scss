@@ -1,4 +1,5 @@
 .display-xl {
+  font-family: var(--font-primary);
   font-size: clamp(88px, 16vw, 250px);
   line-height: 0.8;
   letter-spacing: -0.06em;
@@ -6,59 +7,68 @@
 }
 
 .display-l {
+  font-family: var(--font-primary);
   font-size: clamp(66px, 7.08vw, 136px);
   line-height: 0.88;
   letter-spacing: -0.06em;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .display-m {
+  font-family: var(--font-primary);
   font-size: clamp(54px, 5vw, 96px);
   line-height: 0.92;
   letter-spacing: -0.045em;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .display-s {
+  font-family: var(--font-primary);
   font-size: clamp(38px, 3.75vw, 72px);
-  line-height: 0.95;
+  line-height: 0.9;
   letter-spacing: -0.045em;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .display-xs {
+  font-family: var(--font-primary);
   font-size: clamp(28px, 2.5vw, 48px);
   line-height: 1;
   letter-spacing: -0.035em;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .display-xxs {
+  font-family: var(--font-primary);
   font-size: clamp(21px, 1.66vw, 32px);
-  line-height: 1.15;
+  line-height: 1.05;
   letter-spacing: -0.025em;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .text-xl {
+  font-family: var(--font-secondary);
   font-size: clamp(20px, 1.65vw, 32px);
-  line-height: 1.45;
+  line-height: 1.28;
+  letter-spacing: -0.025em;
 }
 
 .text-m {
+  font-family: var(--font-secondary);
   font-size: clamp(16px, 1.05vw, 20px);
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 .text-s {
+  font-family: var(--font-secondary);
   font-size: clamp(14px, 0.875vw, 17px);
-  line-height: 1.55;
+  line-height: 1.45;
 }
 
 .label {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-family: var(--font-secondary);
-  font-weight: 500;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-weight: 700;
 }

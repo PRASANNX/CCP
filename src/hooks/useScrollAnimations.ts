@@ -1,21 +1,25 @@
-import { useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const useScrollAnimations = () => {
+export function useScrollAnimations() {
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
+      "(prefers-reduced-motion: reduce)"
     ).matches;
-    if (prefersReducedMotion) return;
+
+    if (prefersReducedMotion) {
+      gsap.set("[data-reveal]", { opacity: 1, y: 0 });
+      return;
+    }
 
     const ctx = gsap.context(() => {
-      // Generic [data-reveal] elements
-      const revealElements = document.querySelectorAll<HTMLElement>('[data-reveal]');
-      revealElements.forEach((el) => {
+      // Generic reveals
+      gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
         gsap.fromTo(
           el,
           { opacity: 0, y: 40 },
@@ -23,16 +27,17 @@ export const useScrollAnimations = () => {
             opacity: 1,
             y: 0,
             duration: 0.9,
-            ease: 'power3.out',
+            ease: "power3.out",
             scrollTrigger: {
               trigger: el,
-              start: 'top 85%',
+              start: "top 85%",
+              once: true,
             },
           }
         );
       });
 
-      // Hero title split into lines
+      // Hero animation (manual spans instead of SplitType as requested to preserve shapes)
       const heroTitleSpans = document.querySelectorAll<HTMLElement>('[data-hero-title] > span');
       if (heroTitleSpans.length) {
         // Wrap lines for overflow hidden
@@ -51,53 +56,90 @@ export const useScrollAnimations = () => {
           {
             yPercent: 0,
             opacity: 1,
-            duration: 1.6,
-            ease: 'power4.out',
-            stagger: 0.15,
+            duration: 1.1,
+            ease: "power4.out",
+            stagger: 0.08,
+            delay: 0.2,
           }
         );
       }
 
-      // Hero copy and buttons
-      const heroCopy = document.querySelector<HTMLElement>('.hero-copy-reveal');
+      const heroCopy = document.querySelector<HTMLElement>("[data-hero-copy]");
       if (heroCopy) {
-        gsap.fromTo(
-          heroCopy,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.6 }
-        );
-      }
-
-      const heroActions = document.querySelector<HTMLElement>('.hero-actions-reveal');
-      if (heroActions) {
-        gsap.fromTo(
-          heroActions,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.9 }
-        );
-      }
-
-      // Stagger cards by section
-      document.querySelectorAll<HTMLElement>('[data-stagger-parent]').forEach((parent) => {
-        const children = parent.querySelectorAll<HTMLElement>('[data-stagger-child]');
-        gsap.fromTo(
-          children,
-          { opacity: 0, y: 50 },
+        gsap.fromTo(heroCopy, 
+          { opacity: 0, y: 32 },
           {
             opacity: 1,
             y: 0,
-            duration: 1.2,
-            ease: 'power4.out',
-            stagger: 0.15,
+            duration: 0.9,
+            ease: "power3.out",
+            delay: 0.65,
+          }
+        );
+      }
+
+      const heroActions = document.querySelector<HTMLElement>("[data-hero-actions]");
+      if (heroActions) {
+        gsap.fromTo(heroActions.children, 
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.75,
+            ease: "power3.out",
+            stagger: 0.08,
+            delay: 0.82,
+          }
+        );
+      }
+
+      // Table rows
+      gsap.utils.toArray<HTMLElement>("[data-number-row]").forEach((row, index) => {
+        gsap.fromTo(
+          row,
+          { opacity: 0, y: 32 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: index * 0.04,
+            ease: "power3.out",
             scrollTrigger: {
-              trigger: parent,
-              start: 'top 80%',
+              trigger: row,
+              start: "top 88%",
+              once: true,
             },
           }
         );
       });
+
+      // Composition cards
+      gsap.utils.toArray<HTMLElement>("[data-composition-card]").forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 50, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.9,
+            delay: index * 0.06,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
+      });
+
+      ScrollTrigger.refresh();
     });
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
-};
+}

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styles from './Submenus.module.scss';
 import { navigation } from '../../data/navigation';
 
@@ -8,6 +9,14 @@ type SubmenusProps = {
 
 export const Submenus = ({ activeKey, onClose }: SubmenusProps) => {
   const submenu = navigation.find((item) => item.rel === activeKey);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
 
   if (!submenu || !submenu.children) return null;
 

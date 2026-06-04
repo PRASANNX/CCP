@@ -5,7 +5,9 @@ import { useReveal } from '../../hooks/useReveal';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/pagination';
 
 const CaseCard = ({ data, onEnter }: { data: any; onEnter: () => void }) => {
   const ref = useMagnetic<HTMLAnchorElement>({ strength: 0.1 });
@@ -28,18 +30,27 @@ const CaseCard = ({ data, onEnter }: { data: any; onEnter: () => void }) => {
 
 export const Cases = () => {
   const sectionRef = useReveal<HTMLElement>();
-  const [activeColor, setActiveColor] = useState(cases[0].color);
+  const [activeCase, setActiveCase] = useState(0);
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <section 
       className={styles.section} 
       ref={sectionRef}
-      style={{ backgroundColor: activeColor }}
       data-stagger-parent
-      onMouseLeave={() => setActiveColor(cases[0].color)}
+      onMouseLeave={() => setActiveCase(0)}
     >
-      <div className="container">
+      <div className={styles.backgrounds} aria-hidden="true">
+        {cases.map((item, index) => (
+          <div
+            className={`${styles.background} ${activeCase === index ? styles.active : ""}`}
+            key={item.title}
+            style={{ background: item.color }}
+          />
+        ))}
+      </div>
+
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div style={{ marginBottom: '4rem' }}>
           <h2 className="display-l" data-stagger-child>[FILL: evidence section title]</h2>
         </div>
@@ -51,7 +62,7 @@ export const Cases = () => {
               <div key={i} data-stagger-child>
                 <CaseCard 
                   data={item} 
-                  onEnter={() => setActiveColor(item.color)} 
+                  onEnter={() => setActiveCase(i)} 
                 />
               </div>
             ))}
@@ -59,12 +70,17 @@ export const Cases = () => {
         ) : (
           /* Mobile Swiper */
           <div className={styles.mobileSwiper}>
-            <Swiper spaceBetween={16} slidesPerView={1.1} centeredSlides={true}>
+            <Swiper 
+              modules={[Pagination]}
+              spaceBetween={16} 
+              slidesPerView={1.08} 
+              pagination={{ clickable: true }}
+            >
               {cases.map((item, i) => (
                 <SwiperSlide key={i}>
                   <a href="#" className={styles.mobileCard} style={{ backgroundColor: item.color }}>
                     <p className="label">{item.category}</p>
-                    <h3 className="display-xs" style={{ marginTop: 'auto' }}>{item.title}</h3>
+                    <h3 className="display-xs" style={{ marginTop: 'auto', color: 'var(--black)' }}>{item.title}</h3>
                   </a>
                 </SwiperSlide>
               ))}
@@ -77,7 +93,6 @@ export const Cases = () => {
             [FILL: evidence CTA]
           </a>
         </div>
-
       </div>
     </section>
   );

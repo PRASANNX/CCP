@@ -8,24 +8,30 @@ const CompCard = ({ data }: { data: any }) => {
   
   if (data.type === 'text') {
     return (
-      <div className={`${styles.card} ${styles[data.color]} ${data.span ? styles[data.span] : ''}`} ref={ref}>
-        <h3 className="display-xxs">{data.title}</h3>
+      <div className={`${styles.card} ${styles[data.color]} ${data.span ? styles[data.span] : ''}`}>
+        <div className={styles.magneticInner} ref={ref}>
+          <h3 className="display-xxs">{data.title}</h3>
+        </div>
       </div>
     );
   }
   
   if (data.type === 'number') {
     return (
-      <div className={`${styles.card} ${styles.numberCard} ${data.span ? styles[data.span] : ''}`} ref={ref}>
-        <div className="display-l">{data.value}</div>
-        <p className="label">{data.title}</p>
+      <div className={`${styles.card} ${styles.numberCard} ${data.span ? styles[data.span] : ''}`}>
+        <div className={styles.magneticInner} ref={ref}>
+          <div className="display-l">{data.value}</div>
+          <p className="label">{data.title}</p>
+        </div>
       </div>
     );
   }
   
   return (
-    <div className={`${styles.card} ${styles.mediaCard} ${data.span ? styles[data.span] : ''}`} ref={ref}>
-      <span>{data.alt}</span>
+    <div className={`${styles.card} ${styles.mediaCard} ${data.span ? styles[data.span] : ''}`}>
+      <div className={styles.magneticInner} ref={ref}>
+        <span>{data.alt}</span>
+      </div>
     </div>
   );
 };
@@ -34,10 +40,10 @@ export const Composition = () => {
   const headerRef = useReveal<HTMLDivElement>();
 
   return (
-    <section className={styles.section} data-stagger-parent>
+    <section className={styles.section}>
       <div className="container">
         
-        <div className={styles.header} ref={headerRef}>
+        <div className={styles.header} ref={headerRef} data-reveal>
           <h2 className="display-m">
             [FILL: composition title line 1]<br/>
             [FILL: composition title line 2]<br/>
@@ -49,7 +55,7 @@ export const Composition = () => {
         
         <div className={styles.grid}>
           {compositionCards.map((c, i) => (
-            <div key={i} data-stagger-child>
+            <div key={i} data-composition-card>
               <CompCard data={c} />
             </div>
           ))}

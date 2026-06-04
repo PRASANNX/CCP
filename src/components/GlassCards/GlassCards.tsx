@@ -4,14 +4,18 @@ import { useReveal } from '../../hooks/useReveal';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/pagination';
 
 const GlassCard = ({ data }: { data: any }) => {
   const ref = useMagnetic<HTMLDivElement>({ strength: 0.05, rotate: 1 });
   return (
-    <div className={styles.card} ref={ref}>
-      <h3 className="display-xs">{data.title}</h3>
-      <p className="text-m" style={{ marginTop: '2rem' }}>{data.desc}</p>
+    <div className={styles.card}>
+      <div ref={ref} className={styles.magneticInner}>
+        <h3 className="display-xs">{data.title}</h3>
+        <p className="text-m" style={{ marginTop: '2rem' }}>{data.desc}</p>
+      </div>
     </div>
   );
 };
@@ -21,9 +25,9 @@ export const GlassCards = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
-    <section className={styles.section} ref={sectionRef} data-stagger-parent>
+    <section className={styles.section} ref={sectionRef}>
       <div className="container">
-        <div style={{ marginBottom: '4rem' }} data-stagger-child>
+        <div style={{ marginBottom: '4rem' }} data-reveal>
           <h2 className="display-l">
             [FILL: audience path title line 1]<br/>
             <span className={styles.shape} aria-hidden="true" />
@@ -36,7 +40,7 @@ export const GlassCards = () => {
           /* Desktop Grid */
           <div className={styles.desktopGrid}>
             {glassCards.map((card, i) => (
-              <div key={i} data-stagger-child>
+              <div key={i} data-reveal>
                 <GlassCard data={card} />
               </div>
             ))}
@@ -44,7 +48,12 @@ export const GlassCards = () => {
         ) : (
           /* Mobile Swiper */
           <div className={styles.mobileSwiper}>
-            <Swiper spaceBetween={16} slidesPerView={1.1} centeredSlides={true}>
+            <Swiper 
+              modules={[Pagination]}
+              spaceBetween={16} 
+              slidesPerView={1.08}
+              pagination={{ clickable: true }}
+            >
               {glassCards.map((card, i) => (
                 <SwiperSlide key={i}>
                   <div className={styles.mobileCard}>
