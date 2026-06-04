@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SplitType from 'split-type';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,30 +33,20 @@ export const useScrollAnimations = () => {
       });
 
       // Hero title split into lines
-      const heroTitle = document.querySelector<HTMLElement>('.hero-title-reveal');
-      if (heroTitle) {
-        const split = new SplitType(heroTitle, { types: 'lines,words' });
-
+      const heroTitleSpans = document.querySelectorAll<HTMLElement>('[data-hero-title] > span');
+      if (heroTitleSpans.length) {
         // Wrap lines for overflow hidden
-        split.lines?.forEach((line) => {
+        heroTitleSpans.forEach((line) => {
           const wrapper = document.createElement('div');
           wrapper.style.overflow = 'hidden';
+          wrapper.style.display = 'block'; // ensure it acts like a line
           line.parentNode?.insertBefore(wrapper, line);
           wrapper.appendChild(line);
+          line.style.display = 'inline-block'; // allow yPercent transform
         });
 
-        // Re-inject shape
-        const shapeClass = heroTitle.getAttribute('data-shape-class');
-        if (shapeClass) {
-          split.words?.forEach((word) => {
-            if (word.innerHTML.includes('__SHAPE__')) {
-              word.innerHTML = word.innerHTML.replace('__SHAPE__', `<span class="${shapeClass}" aria-hidden="true"></span>`);
-            }
-          });
-        }
-
         gsap.fromTo(
-          split.lines,
+          heroTitleSpans,
           { yPercent: 110, opacity: 0 },
           {
             yPercent: 0,

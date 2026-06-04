@@ -2,41 +2,37 @@ import styles from './Footer.module.scss';
 import { useReveal } from '../../hooks/useReveal';
 
 export const Footer = () => {
-  const ref = useReveal<HTMLElement>();
+  const footerRef = useReveal<HTMLDivElement>();
 
   return (
-    <footer className={styles.footer} ref={ref}>
+    <footer className={styles.footer} ref={footerRef} data-stagger-parent>
       <div className="container">
-        <h2 className="display-l">[FILL: footer headline]</h2>
+        <h2 className="display-l" data-stagger-child>[FILL: CTA title]</h2>
         
-        <div className={styles.inner}>
+        <div className={styles.inner} data-stagger-child>
+          <div className={styles.newsletter}>
+            <h3 className="display-xs">[FILL: Newsletter Title]</h3>
+            <p className="text-m">[FILL: Newsletter text]</p>
+            <div className={styles.formPlaceholder}>[FILL: Newsletter Form]</div>
+          </div>
           
           <div className={styles.linksGroup}>
-            <h3 className="label">[FILL: footer link group title]</h3>
+            <h3 className="text-s">[FILL: Links Header]</h3>
             <div className={styles.links}>
-              <a href="#">[FILL: org name] Hub 1</a>
-              <a href="#">[FILL: org name] Hub 2</a>
-              <a href="#">[FILL: org name] Hub 3</a>
+              <a href="#">[FILL: Link 1]</a>
+              <a href="#">[FILL: Link 2]</a>
             </div>
           </div>
-
-          <div className={styles.newsletter}>
-            <h3 className="display-xs">[FILL: newsletter title]</h3>
-            <p className="text-m">[FILL: newsletter description]</p>
-            {/* Form placeholder */}
-            <div className={styles.formPlaceholder}>[FILL: email input form]</div>
-          </div>
-          
         </div>
-        
-        <div className={styles.bottom}>
+
+        <div className={styles.bottom} data-stagger-child>
           <div className={styles.social}>
-            <a href="#">[FILL: social link 1]</a>
-            <a href="#">[FILL: social link 2]</a>
+            <a href="#">[FILL: Social 1]</a>
+            <a href="#">[FILL: Social 2]</a>
           </div>
           <div className={styles.legal}>
-            <a href="#">[FILL: legal link 1]</a>
-            <a href="#">[FILL: legal link 2]</a>
+            <a href="#">[FILL: Legal 1]</a>
+            <a href="#">[FILL: Legal 2]</a>
           </div>
         </div>
       </div>

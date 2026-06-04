@@ -1,23 +1,34 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import styles from './MobileMenu.module.scss';
 import { navigation } from '../../data/navigation';
-import { useOffcanvasFocusTrap } from '../../hooks/useOffcanvasFocusTrap';
 
-interface MobileMenuProps {
-  isOpen: boolean;
+type MobileMenuProps = {
   onClose: () => void;
-}
+  onOpenOffcanvas: () => void;
+};
 
-export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
+export const MobileMenu = ({ onClose, onOpenOffcanvas }: MobileMenuProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
   
-  useOffcanvasFocusTrap(menuRef, isOpen, onClose);
+  useEffect(() => {
+    // Body scroll lock
+    document.body.style.overflow = 'hidden';
+    
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleEscape);
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
 
   return (
     <div
       ref={menuRef}
-      className={`${styles.container} ${isOpen ? styles.isOpen : ''} mobileOnly`}
-      aria-hidden={!isOpen}
+      className={`${styles.container} ${styles.isOpen} mobileOnly`}
       role="dialog"
       aria-modal="true"
     >
@@ -29,7 +40,7 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       </div>
       
       <div className={styles.body}>
-        <nav>
+        <nav aria-label="[FILL: mobile nav label]">
           <ul>
             {navigation.map((item) => (
               <li key={item.label}>
@@ -52,9 +63,16 @@ export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
       </div>
       
       <div className={styles.footer}>
-        <a href="#" className="btn btn--dark" style={{ width: '100%' }}>
-          CONTACT
-        </a>
+        <button 
+          className="btn btn--dark" 
+          style={{ width: '100%' }}
+          onClick={() => {
+            onClose();
+            onOpenOffcanvas();
+          }}
+        >
+          [FILL: contact label]
+        </button>
       </div>
     </div>
   );

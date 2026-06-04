@@ -61,7 +61,7 @@ export const Partners = () => {
           {/* Duplicate set for infinite scroll */}
           {partnersRow1.map((_, i) => (
             <div key={`r1-dup-${i}`} className={styles.logo} aria-hidden="true">
-              <span aria-hidden="true"></span>
+              <span className={styles.logoVisualClone} aria-hidden="true"></span>
             </div>
           ))}
         </div>
@@ -78,7 +78,7 @@ export const Partners = () => {
           {/* Duplicate set for infinite scroll */}
           {partnersRow2.map((_, i) => (
             <div key={`r2-dup-${i}`} className={styles.logo} aria-hidden="true">
-              <span aria-hidden="true"></span>
+              <span className={styles.logoVisualClone} aria-hidden="true"></span>
             </div>
           ))}
         </div>

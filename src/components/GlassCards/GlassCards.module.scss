@@ -13,6 +13,16 @@
   vertical-align: middle;
 }
 
+.shape {
+  display: inline-block;
+  width: 1em;
+  height: 0.34em;
+  border-radius: 999px;
+  background: var(--red, #e00);
+  vertical-align: 0.08em;
+  margin-right: 0.08em;
+}
+
 .desktopGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

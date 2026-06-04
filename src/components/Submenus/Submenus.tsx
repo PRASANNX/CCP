@@ -1,38 +1,38 @@
 import styles from './Submenus.module.scss';
 import { navigation } from '../../data/navigation';
 
-interface SubmenusProps {
-  activeSubmenu: string | null;
-  onMouseEnter: () => void;
-}
+type SubmenusProps = {
+  activeKey: string;
+  onClose: () => void;
+};
 
-export const Submenus = ({ activeSubmenu, onMouseEnter }: SubmenusProps) => {
-  const activeItem = navigation.find((item) => item.rel === activeSubmenu && item.children);
+export const Submenus = ({ activeKey, onClose }: SubmenusProps) => {
+  const submenu = navigation.find((item) => item.rel === activeKey);
 
-  if (!activeItem) return null;
+  if (!submenu || !submenu.children) return null;
 
   return (
     <div
       className={`${styles.container} ${styles.isOpen}`}
-      onMouseEnter={onMouseEnter}
+      onMouseLeave={onClose}
     >
       <div className="container">
         <div className={`${styles.panel} ${styles.panelActive}`} aria-hidden="false">
           <div className={styles.grid}>
             <div className={styles.titleColumn}>
-              <h3 className="display-xxs">{activeItem.label} Submenu</h3>
+              <h3 className="display-xxs">{submenu.label} Submenu</h3>
             </div>
-              <div className={styles.linksColumn}>
-                <ul>
-                  {activeItem.children?.map((child) => (
-                    <li key={child.label}>
-                      <a href={child.href}>{child.label}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className={styles.linksColumn}>
+              <ul>
+                {submenu.children.map((child) => (
+                  <li key={child.label}>
+                    <a href={child.href} onClick={onClose}>{child.label}</a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+        </div>
       </div>
     </div>
   );

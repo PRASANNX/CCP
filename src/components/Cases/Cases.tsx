@@ -41,7 +41,7 @@ export const Cases = () => {
     >
       <div className="container">
         <div style={{ marginBottom: '4rem' }}>
-          <h2 className="display-m" data-stagger-child>[FILL: evidence section title]</h2>
+          <h2 className="display-l" data-stagger-child>[FILL: evidence section title]</h2>
         </div>
         
         {!isMobile ? (

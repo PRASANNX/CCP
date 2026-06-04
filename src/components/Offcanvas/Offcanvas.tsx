@@ -1,51 +1,62 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import styles from './Offcanvas.module.scss';
 import { useOffcanvasFocusTrap } from '../../hooks/useOffcanvasFocusTrap';
 
-export const Offcanvas = () => {
-  const [isOpen, setIsOpen] = useState(false);
+type OffcanvasProps = {
+  onClose: () => void;
+};
+
+export const Offcanvas = ({ onClose }: OffcanvasProps) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   
-  useOffcanvasFocusTrap(dialogRef, isOpen, () => setIsOpen(false));
+  useOffcanvasFocusTrap(dialogRef, true, onClose);
 
-  // Expose a global method to open the offcanvas from anywhere (like the Hero CTA)
   useEffect(() => {
-    const handleOpen = () => setIsOpen(true);
-    window.addEventListener('open-offcanvas', handleOpen);
-    return () => window.removeEventListener('open-offcanvas', handleOpen);
-  }, []);
-
-  if (!isOpen) return null;
+    // Body scroll lock
+    document.body.style.overflow = 'hidden';
+    
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleEscape);
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
 
   return (
     <>
       <div 
         className={`${styles.backdrop} ${styles.backdropActive}`} 
-        onClick={() => setIsOpen(false)}
+        onClick={onClose}
         aria-hidden="true"
+        aria-label="[FILL: close backdrop label]"
       />
       
-      <div 
+      <aside 
         ref={dialogRef}
         className={`${styles.panel} ${styles.panelActive}`}
         role="dialog"
         aria-modal="true"
+        aria-labelledby="offcanvas-title"
       >
         <div className={styles.header}>
-          <h3 className="display-xxs">[FILL: offcanvas title]</h3>
+          <h3 id="offcanvas-title" className="display-xxs">[FILL: offcanvas title]</h3>
           <button 
             className={styles.closeBtn} 
-            onClick={() => setIsOpen(false)}
-            aria-label="Close panel"
+            onClick={onClose}
+            aria-label="[FILL: close label]"
           >
-            CLOSE
+            [FILL: close label]
           </button>
         </div>
         
         <div className={styles.body}>
           <p className="text-m">[FILL: offcanvas content/form]</p>
         </div>
-      </div>
+      </aside>
     </>
   );
 };

@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react';
 import styles from './Header.module.scss';
 import { navigation } from '../../data/navigation';
-import { Submenus } from '../Submenus/Submenus';
-import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { useMagnetic } from '../../hooks/useMagnetic';
 
-export const Header = () => {
+interface HeaderProps {
+  onOpenMobileMenu: () => void;
+  onOpenOffcanvas: () => void;
+  activeSubmenu: string | null;
+  setActiveSubmenu: (val: string | null) => void;
+}
+
+export const Header = ({
+  onOpenMobileMenu,
+  onOpenOffcanvas,
+  activeSubmenu,
+  setActiveSubmenu,
+}: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +34,7 @@ export const Header = () => {
     setActiveSubmenu(null);
   };
 
-  const ctaRef = useMagnetic<HTMLAnchorElement>({ strength: 0.1 });
+  const ctaRef = useMagnetic<HTMLButtonElement>({ strength: 0.1 });
 
   return (
     <>
@@ -56,42 +64,32 @@ export const Header = () => {
             </nav>
 
             <div className={styles.actions}>
-              <a href="#" className={`btn btn--dark desktopOnly`} ref={ctaRef}>
+              <button
+                className={`btn btn--dark desktopOnly`}
+                ref={ctaRef}
+                onClick={onOpenOffcanvas}
+              >
                 CONTACT
-              </a>
+              </button>
               <button
                 className={`${styles.menuBtn} mobileOnly`}
-                onClick={() => setMobileMenuOpen(true)}
+                onClick={onOpenMobileMenu}
                 aria-label="Open menu"
-                aria-expanded={mobileMenuOpen}
               >
                 MENU
               </button>
             </div>
           </div>
         </div>
-
-        {/* Submenus component - pass the active state */}
-        <div className="desktopOnly">
-          <Submenus
-            activeSubmenu={activeSubmenu}
-            onMouseEnter={() => {}} // keeps it open if mouse moves down into it
-          />
-        </div>
       </header>
 
       {/* Overlay mask for submenus */}
       <div
-        className={`${styles.mask} desktopOnly ${activeSubmenu ? styles.maskActive : ''}`}
+        className={`${styles.mask} desktopOnly ${
+          activeSubmenu ? styles.maskActive : ''
+        }`}
         aria-hidden="true"
       />
-
-      {mobileMenuOpen && (
-        <MobileMenu
-          isOpen={mobileMenuOpen}
-          onClose={() => setMobileMenuOpen(false)}
-        />
-      )}
     </>
   );
 };

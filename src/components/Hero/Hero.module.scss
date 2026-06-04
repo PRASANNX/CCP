@@ -17,13 +17,12 @@
 
 .shape {
   display: inline-block;
-  width: 1.5em;
-  height: 0.7em;
-  background-color: var(--white-20);
-  border-radius: 100px;
-  margin: 0 0.2em;
-  vertical-align: middle;
-  overflow: hidden;
+  width: 0.9em;
+  height: 0.34em;
+  border-radius: 999px;
+  background: var(--ccp-orange);
+  vertical-align: 0.08em;
+  margin-right: 0.08em;
 }
 
 .bottom {

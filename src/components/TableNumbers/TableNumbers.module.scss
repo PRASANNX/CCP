@@ -3,6 +3,16 @@
   background-color: var(--white);
 }
 
+.shape {
+  display: inline-block;
+  width: 1em;
+  height: 0.34em;
+  border-radius: 999px;
+  background: var(--blue, #0070f3);
+  vertical-align: 0.08em;
+  margin-right: 0.08em;
+}
+
 .table {
   border-top: 2px solid var(--black);
 }

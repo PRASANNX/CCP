@@ -32,10 +32,10 @@ export const FeatureCards = () => {
       <div className="container">
         
         <div className={styles.sectionHeader}>
-          <h2 className="display-m">
+          <h2 className="display-s">
             [FILL: difference title line 1]<br/>
             [FILL: difference title line 2]<br/>
-            <span className={styles.shape} aria-hidden="true"></span><br/>
+            <span className={styles.shape} aria-hidden="true" />
             [FILL: difference title line 3]
           </h2>
         </div>
