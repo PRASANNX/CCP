@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: clamp(92px, 6vw, 110px);
+  height: clamp(84px, 6vw, 110px);
   padding: 0 clamp(18px, 2vw, 34px);
 }
 
@@ -30,35 +30,29 @@
 }
 
 .nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+
   ul {
     display: flex;
-    gap: 3rem;
+    gap: clamp(28px, 4vw, 64px);
+    align-items: center;
   }
 }
 
 .navLink {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   font-family: var(--font-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 1rem 0;
+  text-transform: none;
+  letter-spacing: 0;
+  padding: 0.6rem 0;
   position: relative;
   color: var(--black);
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 0;
-    width: 0%;
-    height: 1px;
-    background-color: var(--black);
-    transition: width 0.3s ease;
-  }
-
-  &:hover::after {
-    width: 100%;
+  &:hover {
+    opacity: 0.9;
   }
 }
 
@@ -79,6 +73,15 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
+}
+
+.loginLink {
+  margin-right: 14px;
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--black);
+  text-decoration: underline;
 }
 
 .menuBtn {

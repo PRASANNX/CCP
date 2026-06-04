@@ -10,6 +10,11 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
 ::selection {
   background-color: var(--black);
   color: var(--white);

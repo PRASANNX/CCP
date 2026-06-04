@@ -65,6 +65,7 @@ export const Header = ({
             </nav>
 
             <div className={styles.actions}>
+              <a href="/login" className={`${styles.loginLink} desktopOnly`}>Login</a>
               <button
                 className={`${styles.contactBtn} desktopOnly`}
                 ref={ctaRef}
