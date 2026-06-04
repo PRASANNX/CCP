@@ -5,7 +5,7 @@ import { Hero } from "./components/Hero/Hero";
 import { GlassCardsRandom } from "./components/GlassCardsRandom/GlassCardsRandom";
 import { BrandsWorkedWith } from "./components/BrandsWorkedWith/BrandsWorkedWith";
 import { FeatureCards } from "./components/FeatureCards/FeatureCards";
-import { TableNumbers } from "./components/TableNumbers/TableNumbers";
+import { KpiProof } from "./components/KpiProof/KpiProof";
 import { Cases } from "./components/Cases/Cases";
 import { GlassCards } from "./components/GlassCards/GlassCards";
 import { Composition } from "./components/Composition/Composition";
@@ -63,7 +63,7 @@ function App() {
         <GlassCardsRandom />
         <BrandsWorkedWith />
         <FeatureCards />
-        <TableNumbers />
+        <KpiProof />
         <Cases />
         <GlassCards />
         <Composition />
