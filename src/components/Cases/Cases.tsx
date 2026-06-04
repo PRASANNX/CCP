@@ -1,99 +1,106 @@
-import { useState } from 'react';
-import styles from './Cases.module.scss';
-import { cases } from '../../data/cases';
-import { useReveal } from '../../hooks/useReveal';
-import { useMagnetic } from '../../hooks/useMagnetic';
-import { useMediaQuery } from '../../hooks/useMediaQuery';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { useState } from "react";
+import type { KeyboardEvent } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import styles from "./Cases.module.scss";
+import { cases } from "../../data/cases";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
-const CaseCard = ({ data, onEnter }: { data: any; onEnter: () => void }) => {
-  const ref = useMagnetic<HTMLAnchorElement>({ strength: 0.1 });
-  
-  return (
-    <a 
-      href="#" 
-      className={styles.card} 
-      ref={ref}
-      onMouseEnter={onEnter}
-      onFocus={onEnter}
-    >
-      <div className={styles.cardInner}>
-        <p className="label">{data.category}</p>
-        <h3 className="display-xs" style={{ marginTop: 'auto' }}>{data.title}</h3>
-      </div>
-    </a>
-  );
-};
-
-export const Cases = () => {
-  const sectionRef = useReveal<HTMLElement>();
-  const [activeCase, setActiveCase] = useState(0);
+export function Cases() {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>, index: number) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setActiveIndex(index);
+    }
+  };
 
   return (
-    <section 
-      className={styles.section} 
-      ref={sectionRef}
-      data-stagger-parent
-      onMouseLeave={() => setActiveCase(0)}
+    <section
+      className={styles.section}
+      data-component="cases"
+      aria-labelledby="cases-title"
+      onMouseLeave={() => setActiveIndex(null)}
     >
       <div className={styles.backgrounds} aria-hidden="true">
+        <div className={`${styles.bgBase} ${activeIndex === null ? styles.active : ""}`} />
         {cases.map((item, index) => (
           <div
-            className={`${styles.background} ${activeCase === index ? styles.active : ""}`}
+            className={`${styles.bgItem} ${activeIndex === index ? styles.active : ""}`}
             key={item.title}
             style={{ background: item.color }}
           />
         ))}
       </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <div style={{ marginBottom: '4rem' }}>
-          <h2 className="display-l" data-stagger-child>[FILL: evidence section title]</h2>
+      <div className={styles.inner}>
+        <div className={styles.header} data-reveal>
+          <h2 id="cases-title" className="display-l">
+            [FILL: evidence section title]
+          </h2>
         </div>
-        
+
         {!isMobile ? (
-          /* Desktop Grid */
-          <div className={styles.desktopGrid}>
-            {cases.map((item, i) => (
-              <div key={i} data-stagger-child>
-                <CaseCard 
-                  data={item} 
-                  onEnter={() => setActiveCase(i)} 
-                />
-              </div>
-            ))}
+          <div className={styles.grid}>
+            {cases.map((item, index) => {
+              const isActive = activeIndex === index;
+              return (
+                <article
+                  key={item.title}
+                  tabIndex={0}
+                  className={`${styles.card} ${isActive ? styles.active : ""}`}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onFocus={() => setActiveIndex(index)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
+                  data-reveal
+                >
+                  <div className={styles.cardInner}>
+                    <p className="text-s" style={{ opacity: 0.8 }}>
+                      {item.category}
+                    </p>
+                    <h3 className="display-xs" style={{ marginTop: "auto" }}>
+                      {item.title}
+                    </h3>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         ) : (
-          /* Mobile Swiper */
-          <div className={styles.mobileSwiper}>
-            <Swiper 
-              modules={[Pagination]}
-              spaceBetween={16} 
-              slidesPerView={1.08} 
-              pagination={{ clickable: true }}
-            >
-              {cases.map((item, i) => (
-                <SwiperSlide key={i}>
-                  <a href="#" className={styles.mobileCard} style={{ backgroundColor: item.color }}>
-                    <p className="label">{item.category}</p>
-                    <h3 className="display-xs" style={{ marginTop: 'auto', color: 'var(--black)' }}>{item.title}</h3>
-                  </a>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+          <Swiper
+            modules={[Pagination]}
+            spaceBetween={16}
+            slidesPerView={1.08}
+            pagination={{ clickable: true }}
+            className={styles.swiper}
+          >
+            {cases.map((item) => (
+              <SwiperSlide key={item.title}>
+                <article className={styles.cardMobile} style={{ background: item.color }}>
+                  <div className={styles.cardInner}>
+                    <p className="text-s" style={{ opacity: 0.9 }}>
+                      {item.category}
+                    </p>
+                    <h3 className="display-xs" style={{ marginTop: "auto", color: "var(--black)" }}>
+                      {item.title}
+                    </h3>
+                  </div>
+                </article>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         )}
 
-        <div style={{ marginTop: '4rem', display: 'flex', justifyContent: 'center' }} data-stagger-child>
-          <a href="#" className="btn btn--outline" style={{ borderColor: 'var(--white)', color: 'var(--white)' }}>
-            [FILL: evidence CTA]
+        <div className={styles.actions} data-reveal>
+          <a href="#cases" className={styles.button}>
+            <span>[FILL: evidence CTA]</span>
           </a>
         </div>
       </div>
     </section>
   );
-};
+}

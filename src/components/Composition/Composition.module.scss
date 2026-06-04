@@ -1,9 +1,13 @@
 .section {
   background: var(--white);
   color: var(--black);
-  padding-top: clamp(110px, 10vw, 190px);
-  padding-bottom: clamp(110px, 10vw, 190px);
+  padding: clamp(110px, 10vw, 190px) 0;
   overflow: hidden;
+}
+
+.inner {
+  width: min(92vw, 1760px);
+  margin-inline: auto;
 }
 
 .intro {
@@ -11,17 +15,23 @@
   grid-template-columns: 1fr 1fr;
   gap: clamp(40px, 8vw, 140px);
   align-items: start;
-  max-width: 1100px;
+  max-width: 1200px;
   margin-inline: auto;
   margin-bottom: clamp(70px, 8vw, 130px);
   
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
 }
 
 .title span {
   display: block;
+}
+
+.lineWithShape {
+  display: flex !important;
+  align-items: center;
+  gap: 0.12em;
 }
 
 .shape {
@@ -32,8 +42,7 @@
   border-radius: 999px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  margin: 0 0.1em;
-  vertical-align: middle;
+  flex: none;
 }
 
 .summary {
@@ -43,14 +52,14 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr .8fr 1fr;
+  grid-template-columns: 1fr 1fr 0.8fr 1fr;
   grid-auto-rows: clamp(180px, 15vw, 300px);
   gap: 12px;
   
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
-    gap: 24px;
+    gap: 16px;
   }
 }
 
@@ -60,10 +69,20 @@
   padding: clamp(24px, 3vw, 56px);
   display: flex;
   align-items: flex-end;
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+  cursor: default;
   
-  @media (max-width: 768px) {
+  &:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+  }
+
+  @media (max-width: 900px) {
     min-height: 250px;
-    border-radius: 16px !important; /* Flatten out mobile */
+    border-radius: 20px !important;
+    &:hover {
+      transform: none;
+    }
   }
 }
 
@@ -75,15 +94,31 @@
 .mediaCard {
   background: var(--grey-alt);
   border-radius: 0 999px 999px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.mediaPlaceholder {
+  color: var(--grey);
+  font-size: 14px;
 }
 
 .roundCard {
   border-radius: 50%;
   background: var(--black);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   
-  @media (max-width: 768px) {
-    border-radius: 16px !important;
+  @media (max-width: 900px) {
+    border-radius: 20px !important;
+    aspect-ratio: auto;
   }
+}
+
+.blueCard {
+  background: var(--blue);
+  border-radius: 0 999px 999px 0;
 }
 
 .metricCard {
@@ -91,22 +126,27 @@
   grid-row: span 2;
   background: var(--red);
   border-radius: 0 999px 999px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
   
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     grid-column: 1 / -1;
     grid-row: auto;
+    min-height: 400px;
   }
+}
+
+.metricWrap {
+  position: relative;
+  z-index: 2;
 }
 
 .metric {
   font-family: var(--font-primary);
-  font-size: clamp(120px, 18vw, 320px);
-  line-height: .8;
-  letter-spacing: -.08em;
+  font-size: clamp(100px, 18vw, 320px);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
   color: var(--black);
-}
-
-.blueCard {
-  background: var(--blue);
-  border-radius: 0 999px 999px 0;
 }
