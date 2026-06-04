@@ -1,5 +1,6 @@
 import styles from './Footer.module.scss';
 import { useReveal } from '../../hooks/useReveal';
+import logo from '../../assets/logo.png';
 
 export const Footer = () => {
   const footerRef = useReveal<HTMLDivElement>();
@@ -8,7 +9,7 @@ export const Footer = () => {
     <footer className={styles.footer} ref={footerRef}>
       <div className="container">
         <div className={styles.top} data-reveal>
-          <h2 className="display-l">[FILL: CTA title]</h2>
+          <img src={logo} alt="CCProductions" style={{ height: 'clamp(48px, 8vw, 100px)', width: 'auto', filter: 'invert(1) brightness(1.5)' }} />
         </div>
 
         <hr />

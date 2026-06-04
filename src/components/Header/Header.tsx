@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './Header.module.scss';
 import { navigation } from '../../data/navigation';
+import logo from '../../assets/logo.png';
 import { useMagnetic } from '../../hooks/useMagnetic';
 
 interface HeaderProps {
@@ -45,7 +46,7 @@ export const Header = ({
         <div className="container">
           <div className={styles.inner}>
             <a href="/" className={styles.brand}>
-              [FILL: org name]
+              <img src={logo} alt="CCProductions" style={{ height: '28px', width: 'auto', display: 'block' }} />
             </a>
 
             <nav className={`${styles.nav} desktopOnly`}>
