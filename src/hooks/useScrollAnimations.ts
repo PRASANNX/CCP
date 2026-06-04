@@ -45,15 +45,25 @@ export const useScrollAnimations = () => {
           wrapper.appendChild(line);
         });
 
+        // Re-inject shape
+        const shapeClass = heroTitle.getAttribute('data-shape-class');
+        if (shapeClass) {
+          split.words?.forEach((word) => {
+            if (word.innerHTML.includes('__SHAPE__')) {
+              word.innerHTML = word.innerHTML.replace('__SHAPE__', `<span class="${shapeClass}" aria-hidden="true"></span>`);
+            }
+          });
+        }
+
         gsap.fromTo(
           split.lines,
           { yPercent: 110, opacity: 0 },
           {
             yPercent: 0,
             opacity: 1,
-            duration: 1.2,
-            ease: 'power3.out',
-            stagger: 0.1,
+            duration: 1.6,
+            ease: 'power4.out',
+            stagger: 0.15,
           }
         );
       }
@@ -86,9 +96,9 @@ export const useScrollAnimations = () => {
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            stagger: 0.1,
+            duration: 1.2,
+            ease: 'power4.out',
+            stagger: 0.15,
             scrollTrigger: {
               trigger: parent,
               start: 'top 80%',

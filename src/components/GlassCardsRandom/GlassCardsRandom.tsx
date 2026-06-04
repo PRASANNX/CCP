@@ -41,7 +41,7 @@ export const GlassCardsRandom = () => {
         ) : (
           /* Mobile Swiper */
           <div className={styles.mobileSwiper}>
-            <Swiper spaceBetween={16} slidesPerView={1.2}>
+            <Swiper spaceBetween={16} slidesPerView={1.2} centeredSlides={true}>
               <SwiperSlide>
                 <div className={`${styles.mobileCard} ${styles.activeMobile}`}>
                   <h3 className="text-xl">[FILL: methodology title]</h3>

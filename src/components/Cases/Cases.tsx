@@ -37,6 +37,7 @@ export const Cases = () => {
       ref={sectionRef}
       style={{ backgroundColor: activeColor }}
       data-stagger-parent
+      onMouseLeave={() => setActiveColor(cases[0].color)}
     >
       <div className="container">
         <div style={{ marginBottom: '4rem' }}>
@@ -58,7 +59,7 @@ export const Cases = () => {
         ) : (
           /* Mobile Swiper */
           <div className={styles.mobileSwiper}>
-            <Swiper spaceBetween={16} slidesPerView={1.1}>
+            <Swiper spaceBetween={16} slidesPerView={1.1} centeredSlides={true}>
               {cases.map((item, i) => (
                 <SwiperSlide key={i}>
                   <a href="#" className={styles.mobileCard} style={{ backgroundColor: item.color }}>

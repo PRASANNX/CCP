@@ -38,8 +38,8 @@ export const TableNumbers = () => {
             },
             snap: { innerHTML: 1 }, // round to integers
             onUpdate: function () {
-              // Add back the suffix manually via data attribute if needed, or let React handle suffix next to it
-              counter.innerHTML = Math.round(Number(this.targets()[0].innerHTML)).toString();
+              const val = Math.round(Number(this.targets()[0].innerHTML));
+              counter.innerHTML = new Intl.NumberFormat('en-US').format(val);
             }
           }
         );

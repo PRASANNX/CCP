@@ -8,11 +8,10 @@ export const Hero = () => {
     <section className={styles.hero}>
       <div className="container">
         <div className={styles.top}>
-          <h1 className="hero-title-reveal display-xl">
+          <h1 className="hero-title-reveal display-xl" data-shape-class={styles.shape}>
             [FILL: PROJECT TITLE LINE 1]
             <br />
-            <span className={styles.shape} aria-hidden="true"></span>
-            [FILL: PROJECT TITLE LINE 2]
+            __SHAPE__[FILL: PROJECT TITLE LINE 2]
             <br />
             [FILL: PROJECT TITLE LINE 3]
             <br />

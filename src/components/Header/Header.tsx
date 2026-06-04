@@ -3,6 +3,7 @@ import styles from './Header.module.scss';
 import { navigation } from '../../data/navigation';
 import { Submenus } from '../Submenus/Submenus';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
+import { useMagnetic } from '../../hooks/useMagnetic';
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -24,6 +25,8 @@ export const Header = () => {
   const handleNavLeave = () => {
     setActiveSubmenu(null);
   };
+
+  const ctaRef = useMagnetic<HTMLAnchorElement>({ strength: 0.1 });
 
   return (
     <>
@@ -53,7 +56,7 @@ export const Header = () => {
             </nav>
 
             <div className={styles.actions}>
-              <a href="#" className={`btn btn--dark desktopOnly`}>
+              <a href="#" className={`btn btn--dark desktopOnly`} ref={ctaRef}>
                 CONTACT
               </a>
               <button

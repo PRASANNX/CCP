@@ -44,7 +44,7 @@ export const GlassCards = () => {
         ) : (
           /* Mobile Swiper */
           <div className={styles.mobileSwiper}>
-            <Swiper spaceBetween={16} slidesPerView={1.1}>
+            <Swiper spaceBetween={16} slidesPerView={1.1} centeredSlides={true}>
               {glassCards.map((card, i) => (
                 <SwiperSlide key={i}>
                   <div className={styles.mobileCard}>
