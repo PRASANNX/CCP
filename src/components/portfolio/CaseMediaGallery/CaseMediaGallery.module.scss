@@ -1,0 +1,48 @@
+@use '../../../styles/variables.scss' as *;
+
+.section {
+  padding: clamp(80px, 10vw, 160px) 0;
+  background: var(--light);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mediaItem {
+  position: relative;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  background: var(--medium);
+  
+  &.portrait {
+    grid-row: span 2;
+    aspect-ratio: 4 / 5;
+  }
+
+  &.landscape {
+    grid-column: span 2;
+    aspect-ratio: 16 / 9;
+
+    @media (max-width: 768px) {
+      grid-column: span 1;
+    }
+  }
+
+  &.square {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

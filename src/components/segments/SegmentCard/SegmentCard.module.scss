@@ -1,0 +1,63 @@
+@use '../../../styles/variables.scss' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  background: var(--light);
+  border-radius: var(--card-radius);
+  padding: 48px;
+  min-height: 360px;
+  color: var(--black);
+  transition: transform 0.4s var(--ease), background 0.4s var(--ease);
+
+  &:hover {
+    transform: translateY(-8px);
+    background: var(--white);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+
+    .iconWrap {
+      transform: translateX(8px);
+      background: var(--black);
+      color: var(--white);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 32px;
+    min-height: 280px;
+  }
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(32px, 3vw, 48px);
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey);
+  max-width: 90%;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.iconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease);
+}

@@ -1,0 +1,26 @@
+.cta {
+  padding: clamp(80px, 10vw, 160px) 0;
+  background: var(--dark);
+  color: var(--white);
+  text-align: center;
+}
+
+.inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-family: var(--font-secondary);
+  font-size: clamp(18px, 1.4vw, 24px);
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 48px;
+}

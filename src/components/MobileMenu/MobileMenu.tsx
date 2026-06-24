@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './MobileMenu.module.scss';
 import { navigation } from '../../data/navigation';
 
@@ -44,9 +45,15 @@ export const MobileMenu = ({ onClose, onOpenOffcanvas }: MobileMenuProps) => {
           <ul>
             {navigation.map((item) => (
               <li key={item.label}>
-                <a href={item.href} className="display-xxs" onClick={onClose}>
-                  {item.label}
-                </a>
+                {item.type === 'page' ? (
+                  <Link to={item.href} className="display-xxs" onClick={onClose}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a href={item.href} className="display-xxs" onClick={onClose}>
+                    {item.label}
+                  </a>
+                )}
                 {item.children && (
                   <ul className={styles.subLinks}>
                     {item.children.map((child) => (

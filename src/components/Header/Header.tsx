@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { navigation } from '../../data/navigation';
 import logo from '../../assets/logo.png';
@@ -56,9 +57,15 @@ export const Header = ({
                     key={item.label}
                     onMouseEnter={() => handleNavEnter(item.rel)}
                   >
-                    <a href={item.href} className={styles.navLink}>
-                      {item.label}
-                    </a>
+                    {item.type === 'page' ? (
+                      <Link to={item.href} className={styles.navLink}>
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a href={item.href} className={styles.navLink}>
+                        {item.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

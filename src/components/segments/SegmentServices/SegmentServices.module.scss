@@ -1,0 +1,37 @@
+.section {
+  padding: clamp(80px, 10vw, 160px) 0;
+  background: var(--white);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(32px, 3vw, 48px);
+  margin-bottom: 32px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag {
+  padding: 12px 24px;
+  background: var(--light);
+  border-radius: 50px;
+  font-family: var(--font-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--black);
+}
